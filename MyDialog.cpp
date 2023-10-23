@@ -77,6 +77,7 @@ void MyDialog::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(MyDialog, CDialogEx)
 	
 	ON_BN_CLICKED(IDC_BUTTON_useItem, &MyDialog::OnBnClickedButtonuseitem)
+	ON_BN_CLICKED(IDC_BUTTON_TRAVERSAL, &MyDialog::OnBnClickedButtonTraversal)
 END_MESSAGE_MAP()
 
 
@@ -94,4 +95,11 @@ void MyDialog::OnBnClickedButtonuseitem()
 	DataStruct::data_Item item = rpObject.getItemData((wchar_t*)itemName.GetString());
 
 	system("pause");
+}
+
+
+void MyDialog::OnBnClickedButtonTraversal()
+{
+	rpObject.BackPack::init();
+	rpObject.TraversalBackPackItemData();
 }

@@ -23,6 +23,8 @@ public:
 	void virtual init();
 	//获取背包指定物品的数据,根据物品名称获取
 	DataStruct::data_Item virtual getItemData(IN wchar_t* itemName);
+	//遍历背包物品数据
+	void virtual TraversalBackPackItemData();
 };
 
 

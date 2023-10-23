@@ -29,4 +29,5 @@ public:
 	CEdit idc_Edit_XY;
 	CEdit idc_Edit_Logging;
 	afx_msg void OnBnClickedButtonuseitem();
+	afx_msg void OnBnClickedButtonTraversal();
 };

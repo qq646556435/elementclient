@@ -19,6 +19,9 @@ namespace DataStruct
 		*/
 
 		wchar_t Name[40];//第一个名字
+		wchar_t Name1[40];//第二个名字
+		wchar_t Name2[40];//第三个名字
+		wchar_t Name3[40];//第四个名字
 		wchar_t typeName[40];//物品类型
 		DWORD id;//物品id
 		DWORD cic;//当前物品容量
