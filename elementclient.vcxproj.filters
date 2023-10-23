@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Tools">
+      <UniqueIdentifier>{60624276-e5d1-4496-a017-8ebd8441ad1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tools\AntiScreenCapture">
+      <UniqueIdentifier>{e2e193a7-bee5-4219-b08c-7f5713b1db79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tools\FMC">
+      <UniqueIdentifier>{9b71c103-40cf-4f03-8c92-d21c75b2d203}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tools\BaseAddress">
+      <UniqueIdentifier>{edc7556f-6a22-4834-92ae-e78885756915}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tools\DataStruct">
+      <UniqueIdentifier>{631070e0-138c-483e-afb1-b554c2e3ce06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RP">
+      <UniqueIdentifier>{d390b047-ce47-4357-a591-c24f0a499625}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RP\OC">
+      <UniqueIdentifier>{b2123bfb-730f-48ff-9f91-55eb7a5aaf1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RP\Action">
+      <UniqueIdentifier>{653c04d5-aa7b-4b1c-a536-9505e26e75a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RP\BackPack">
+      <UniqueIdentifier>{8898769e-404a-45fa-ad2b-41f2f7a07c7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tools\MemoryCheck">
+      <UniqueIdentifier>{98f2ec02-d4e3-4a20-8eb6-0c845f119ca4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="elementclient.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MyDialog.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Tools\AntiScreenCapture\AntiScreenCapture.h.cpp">
+      <Filter>Tools\AntiScreenCapture</Filter>
+    </ClCompile>
+    <ClCompile Include="Tools\FMC\FMC.cpp">
+      <Filter>Tools\FMC</Filter>
+    </ClCompile>
+    <ClCompile Include="Tools\BaseAddress\BaseAddress.cpp">
+      <Filter>Tools\BaseAddress</Filter>
+    </ClCompile>
+    <ClCompile Include="RP\OC\OC.cpp">
+      <Filter>RP\OC</Filter>
+    </ClCompile>
+    <ClCompile Include="RP\Action\Action.cpp">
+      <Filter>RP\Action</Filter>
+    </ClCompile>
+    <ClCompile Include="RP\BackPack\BackPack.cpp">
+      <Filter>RP\BackPack</Filter>
+    </ClCompile>
+    <ClCompile Include="RP\RP.cpp">
+      <Filter>RP</Filter>
+    </ClCompile>
+    <ClCompile Include="Tools\MemoryCheck\MemoryCheck.cpp">
+      <Filter>Tools\MemoryCheck</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="elementclient.def">
+      <Filter>源文件</Filter>
+    </None>
+    <None Include="res\elementclient.rc2">
+      <Filter>资源文件</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="elementclient.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MyDialog.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Tools\AntiScreenCapture\AntiScreenCapture.h">
+      <Filter>Tools\AntiScreenCapture</Filter>
+    </ClInclude>
+    <ClInclude Include="Tools\FMC\FMC.h">
+      <Filter>Tools\FMC</Filter>
+    </ClInclude>
+    <ClInclude Include="Tools\BaseAddress\BaseAddress.h">
+      <Filter>Tools\BaseAddress</Filter>
+    </ClInclude>
+    <ClInclude Include="Tools\DataStruct\DataStruct.h">
+      <Filter>Tools\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="RP\OC\OC.h">
+      <Filter>RP\OC</Filter>
+    </ClInclude>
+    <ClInclude Include="RP\Action\Action.h">
+      <Filter>RP\Action</Filter>
+    </ClInclude>
+    <ClInclude Include="RP\BackPack\BackPack.h">
+      <Filter>RP\BackPack</Filter>
+    </ClInclude>
+    <ClInclude Include="RP\RP.h">
+      <Filter>RP</Filter>
+    </ClInclude>
+    <ClInclude Include="Tools\MemoryCheck\MemoryCheck.h">
+      <Filter>Tools\MemoryCheck</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="elementclient.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
