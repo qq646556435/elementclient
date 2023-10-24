@@ -54,7 +54,7 @@
     <ClCompile Include="MyDialog.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Tools\AntiScreenCapture\AntiScreenCapture.h.cpp">
+    <ClCompile Include="Tools\AntiScreenCapture\AntiScreenCapture.cpp">
       <Filter>Tools\AntiScreenCapture</Filter>
     </ClCompile>
     <ClCompile Include="Tools\FMC\FMC.cpp">

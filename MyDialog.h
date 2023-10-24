@@ -30,4 +30,5 @@ public:
 	CEdit idc_Edit_Logging;
 	afx_msg void OnBnClickedButtonuseitem();
 	afx_msg void OnBnClickedButtonTraversal();
+	afx_msg void OnBnClickedButtonShowbaseaddress();
 };

@@ -1,12 +1,11 @@
 #include "BackPack.h"
 #include "../../Tools/BaseAddress/BaseAddress.h"
 #include "../../Tools/MemoryCheck/MemoryCheck.h"
-#include "../../MyDialog.h"
 extern BaseAddress bAObject;
-extern MyDialog  myDialog;
 
 
-void BackPack::memoryReadInDataTOItemStruct(IN QWORD currentItemOject, IN wchar_t* currentItemName, IN DataStruct::data_Item& item)
+
+void BackPack::memoryReadInDataTOItemStruct(IN QWORD currentItemOject, IN wchar_t* currentItemName, IN DataStruct::data_Item& item, IN UINT index)
 {
 	//当前物品类型名称的地址
 	QWORD currentItemTypeNameAddress = *((QWORD*)(currentItemOject + 0x80));
@@ -38,7 +37,7 @@ void BackPack::memoryReadInDataTOItemStruct(IN QWORD currentItemOject, IN wchar_
 	item.id = *((DWORD*)(currentItemOject + 0xc));
 	item.cic = *((DWORD*)(currentItemOject + 0x18));
 	item.cmic = *((DWORD*)(currentItemOject + 0x1c));
-
+	item.index = index;
 }
 
 BackPack::BackPack() :backPackOBject(0)
@@ -89,7 +88,7 @@ DataStruct::data_Item BackPack::getItemData(IN wchar_t* itemName)
 					wcscpy(currentItemOneName, (wchar_t*)(currentItemNameAddress + 0x4));
 					if (wcscmp(currentItemOneName, inItemName) == 0) //如果找到
 					{
-						this->memoryReadInDataTOItemStruct(currentItemOject, currentItemOneName, item);
+						this->memoryReadInDataTOItemStruct(currentItemOject, currentItemOneName, item,i);
 						return item;
 					}
 				}
@@ -105,7 +104,7 @@ DataStruct::data_Item BackPack::getItemData(IN wchar_t* itemName)
                     wcscpy(currentItemTwoName, (wchar_t*)(currentItemNameAddress + 0x4));
 					if (wcscmp(currentItemTwoName, inItemName) == 0) //如果找到
 					{
-						this->memoryReadInDataTOItemStruct(currentItemOject, currentItemTwoName, item);
+						this->memoryReadInDataTOItemStruct(currentItemOject, currentItemTwoName, item,i);
 						return item;
 					}
 				}
@@ -121,7 +120,7 @@ DataStruct::data_Item BackPack::getItemData(IN wchar_t* itemName)
                     wcscpy(currentItemthreeName, (wchar_t*)(currentItemNameAddress + 0xc));
 					if (wcscmp(currentItemthreeName, inItemName) == 0) //如果找到
 					{
-						this->memoryReadInDataTOItemStruct(currentItemOject, currentItemthreeName, item);
+						this->memoryReadInDataTOItemStruct(currentItemOject, currentItemthreeName, item,i);
 						return item;
 
 					}
@@ -138,7 +137,7 @@ DataStruct::data_Item BackPack::getItemData(IN wchar_t* itemName)
                     wcscpy(currentItemFourName, (wchar_t*)(currentItemNameAddress + 0x4));
 					if (wcscmp(currentItemFourName, inItemName) == 0) //如果找到
 					{
-						this->memoryReadInDataTOItemStruct(currentItemOject, currentItemFourName, item);
+						this->memoryReadInDataTOItemStruct(currentItemOject, currentItemFourName, item,i);
 						return item;
 					}
 				}
@@ -148,7 +147,7 @@ DataStruct::data_Item BackPack::getItemData(IN wchar_t* itemName)
 	return item;
 }
 
-void BackPack::TraversalBackPackItemData()
+CString BackPack::TraversalBackPackItemData()
 {
 	//背包最大容量
 	DWORD maxCap = *((QWORD*)(this->backPackOBject + 0x20));
@@ -250,13 +249,15 @@ void BackPack::TraversalBackPackItemData()
 			item.cic = *((DWORD*)(currentItemOject + 0x18));
 			//最大容量
 			item.cmic = *((DWORD*)(currentItemOject + 0x1c));
-
-            cstr.AppendFormat(L"名称: %ws\r\n名称1: %ws\r\n名称2: %ws\r\n名称3: %ws\r\nid: %x\r\n类型: %ws\r\n容量: %ld\r\n最大容量: %ld\r\n\r\n",
-				item.Name, item.Name1, item.Name2, item.Name3,
+			//当前物品的下标
+			item.index = i;
+            cstr.AppendFormat(L"下标: %ld\r\n名称: %ws\r\n名称1: %ws\r\n名称2: %ws\r\n名称3: %ws\r\nid: %x\r\n类型: %ws\r\n容量: %ld\r\n最大容量: %ld\r\n\r\n",
+				item.index,item.Name, item.Name1, item.Name2, item.Name3,
 				item.id, item.typeName, item.cic, item.cmic);
 		}
 	}
-	myDialog.idc_Edit_Logging.SetWindowTextW(cstr.GetString());
+	
+	return cstr;
 }
 
 				/*

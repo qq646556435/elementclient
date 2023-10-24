@@ -6,15 +6,15 @@
 #define IDC_EDIT_LOGGING                1001
 #define IDC_STATIC_LOGGING              1003
 #define IDC_EDIT_Name                   1004
-#define IDC_EDIT_NAME                   1004
-#define IDC_EDIT_HP                     1005
-#define IDC_EDIT_MP                     1006
-#define IDC_EDIT_ENERGY                 1007
-#define IDC_EDIT8                       1008
-#define IDC_EDIT_XY                     1008
-#define IDC_BUTTON_useItem              1009
-#define IDC_BUTTON_                     1010
-#define IDC_BUTTON_TRAVERSAL            1010
+#define IDC_EDIT_NAME                   1005
+#define IDC_EDIT_HP                     1006
+#define IDC_EDIT_MP                     1007
+#define IDC_EDIT_ENERGY                 1008
+#define IDC_EDIT_XY                     1009
+#define IDC_BUTTON_useItem              1010
+#define IDC_BUTTON_SHOWBASEADDRESS      1012
+#define IDC_BUTTON_TRAVERSAL            1013
+
 
 // Next default values for new objects
 // 

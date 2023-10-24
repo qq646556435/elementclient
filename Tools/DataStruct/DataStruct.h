@@ -26,6 +26,7 @@ namespace DataStruct
 		DWORD id;//物品id
 		DWORD cic;//当前物品容量
 		DWORD cmic;//当前物品最大容量
+		UINT index;//当前物品的下标
 
 	};
 	//本人玩家的角色属性信息

@@ -120,9 +120,32 @@ BaseAddress& BaseAddress::operator=(IN UINT value)
 	return *this;
 }
 
-BaseAddress::~BaseAddress()
+CString BaseAddress::getBaseAddressData()
 {
+	//基址数据
+	CString cstr;
+	cstr.AppendFormat(L"本人对象: %llX\r\n", this->j本人对象);
+	cstr.AppendFormat(L"打坐Call: %llX\r\n", this->j打坐call);
+	cstr.AppendFormat(L"取消打坐Call: %llX\r\n", this->j取消打坐call);
+	cstr.AppendFormat(L"整理装备Call: %llX\r\n", this->j整理装备call);
+	cstr.AppendFormat(L"使用物品Call: %llX\r\n", this->j使用物品call);
+	cstr.AppendFormat(L"背包对象的偏移: %llX\r\n", this->j背包对象的偏移);
 
+	return cstr;
 }
 
+/*
+	QWORD j本人对象;
+	QWORD j打坐call;
+	QWORD j取消打坐call;
+	QWORD j整理装备call;
+	QWORD j使用物品call;
+	QWORD j背包对象的偏移;
+*/
+
+
+BaseAddress::~BaseAddress()
+{
+	
+}
 

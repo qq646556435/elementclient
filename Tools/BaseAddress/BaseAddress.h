@@ -27,6 +27,7 @@ public:
 	QWORD  使用物品call();
 	QWORD  背包对象的偏移();
 	BaseAddress& operator=(IN UINT value);
+	CString getBaseAddressData();
 };
 
 

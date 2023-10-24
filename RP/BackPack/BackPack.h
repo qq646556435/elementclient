@@ -14,7 +14,7 @@ private:
 	QWORD backPackOBject; //背包对象
 protected:
 	//从内存读入数据到 item结构体 中
-	void memoryReadInDataTOItemStruct(IN QWORD currentItemOject, IN wchar_t* currentItemName, IN DataStruct::data_Item & item);
+	void memoryReadInDataTOItemStruct(IN QWORD currentItemOject, IN wchar_t* currentItemName, IN DataStruct::data_Item & item,IN UINT index);
 	
 public:
 	BackPack();
@@ -24,7 +24,7 @@ public:
 	//获取背包指定物品的数据,根据物品名称获取
 	DataStruct::data_Item virtual getItemData(IN wchar_t* itemName);
 	//遍历背包物品数据
-	void virtual TraversalBackPackItemData();
+	CString virtual TraversalBackPackItemData();
 };
 
 

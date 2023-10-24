@@ -78,6 +78,7 @@ BEGIN_MESSAGE_MAP(MyDialog, CDialogEx)
 	
 	ON_BN_CLICKED(IDC_BUTTON_useItem, &MyDialog::OnBnClickedButtonuseitem)
 	ON_BN_CLICKED(IDC_BUTTON_TRAVERSAL, &MyDialog::OnBnClickedButtonTraversal)
+	ON_BN_CLICKED(IDC_BUTTON_SHOWBASEADDRESS, &MyDialog::OnBnClickedButtonShowbaseaddress)
 END_MESSAGE_MAP()
 
 
@@ -93,13 +94,23 @@ void MyDialog::OnBnClickedButtonuseitem()
 	CString itemName;
 	this->idc_Edit_Logging.GetWindowTextW(itemName);
 	DataStruct::data_Item item = rpObject.getItemData((wchar_t*)itemName.GetString());
-
-	system("pause");
+	rpObject.useItem(bAObject.获取本人对象(), 0, item.index, 1, bAObject.使用物品call());
+	
 }
 
-
+//遍历背包物品
 void MyDialog::OnBnClickedButtonTraversal()
 {
+	CString cstr;
 	rpObject.BackPack::init();
-	rpObject.TraversalBackPackItemData();
+	cstr = rpObject.TraversalBackPackItemData();
+	this->idc_Edit_Logging.SetWindowTextW(cstr.GetString());
+}
+
+//显示基址数据
+void MyDialog::OnBnClickedButtonShowbaseaddress()
+{
+	CString cstr;
+	cstr = bAObject.getBaseAddressData();
+	this->idc_Edit_Logging.SetWindowTextW(cstr.GetString());
 }
