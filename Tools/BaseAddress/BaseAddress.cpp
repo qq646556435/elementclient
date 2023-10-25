@@ -9,7 +9,8 @@ BYTE j整理装备call特征码[] = { 0x48, 0x8B, 0x5C, 0x24, 0x30, 0x48, 0x8B, 0x6C, 0
 BYTE j背包对象偏移的特征码[] = { 0x48, 0x8B, 0x07, 0x41, 0xB1, 0x01, 0x45, 0x33, 0xC0, 0x41, 0x0F, 0xB6, 0xD1, 0x48, 0x8B, 0xCF,
 0x48, 0x8B, 0x6C, 0x24, 0x50, 0x48, 0x8B, 0x5C, 0x24, 0x58, 0x48, 0x8B, 0x74, 0x24, 0x60, 0x48,
 0x83, 0xC4, 0x40, 0x5F };
-
+//远程销毁物品Call的特征码
+BYTE jRemoteItemDestructionCallFeatureCode[] = { 0xB8, 0x63, 0x02, 0x00, 0x00, 0x41, 0xB8, 0x06, 0x00, 0x00, 0x00, 0x66, 0x89, 0x03, 0x48, 0x8B,0xD3, 0x89, 0x7B, 0x02 };
 
 
 BaseAddress::BaseAddress()
@@ -71,7 +72,11 @@ bool BaseAddress::init()
 		return false;
 	}
 
-
+	this->jRemoteItemDestructionCall = this->特征码定位call(jRemoteItemDestructionCallFeatureCode, sizeof(jRemoteItemDestructionCallFeatureCode), 0x42);
+	if (!this->jRemoteItemDestructionCall)
+	{
+		return false;
+	}
 	return true;
 
 
@@ -108,6 +113,11 @@ QWORD BaseAddress::背包对象的偏移()
 	return this->j背包对象的偏移;
 }
 
+QWORD BaseAddress::getRemoteItemDestructionCall()
+{
+	return this->jRemoteItemDestructionCall;
+}
+
 BaseAddress& BaseAddress::operator=(IN UINT value)
 {
 	this->j本人对象 = value;
@@ -116,7 +126,7 @@ BaseAddress& BaseAddress::operator=(IN UINT value)
 	this->j使用物品call = value;
 	this->j背包对象的偏移 = value;
 	this->j整理装备call = value;
-
+	this->jRemoteItemDestructionCall = value;
 	return *this;
 }
 
@@ -130,7 +140,7 @@ CString BaseAddress::getBaseAddressData()
 	cstr.AppendFormat(L"整理装备Call: %llX\r\n", this->j整理装备call);
 	cstr.AppendFormat(L"使用物品Call: %llX\r\n", this->j使用物品call);
 	cstr.AppendFormat(L"背包对象的偏移: %llX\r\n", this->j背包对象的偏移);
-
+	cstr.AppendFormat(L"远程销毁物品Call: %llX\r\n", this->jRemoteItemDestructionCall);
 	return cstr;
 }
 

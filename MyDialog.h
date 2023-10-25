@@ -31,4 +31,8 @@ public:
 	afx_msg void OnBnClickedButtonuseitem();
 	afx_msg void OnBnClickedButtonTraversal();
 	afx_msg void OnBnClickedButtonShowbaseaddress();
+	afx_msg void OnBnClickedButtonMeditation();
+	afx_msg void OnBnClickedButtonCancelMeditation();
+	afx_msg void OnBnClickedButtonOrganizeBackpack();
+	afx_msg void OnBnClickedButtonRemoteItemDestruction();
 };

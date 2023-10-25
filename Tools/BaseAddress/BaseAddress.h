@@ -15,6 +15,7 @@ private:
 	QWORD j整理装备call;
 	QWORD j使用物品call;
 	QWORD j背包对象的偏移;
+	QWORD jRemoteItemDestructionCall;//远程销毁物品Call
 	
 public:
 	BaseAddress();
@@ -26,6 +27,7 @@ public:
 	QWORD  整理装备call();
 	QWORD  使用物品call();
 	QWORD  背包对象的偏移();
+	QWORD  getRemoteItemDestructionCall();
 	BaseAddress& operator=(IN UINT value);
 	CString getBaseAddressData();
 };

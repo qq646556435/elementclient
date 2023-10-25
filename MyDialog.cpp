@@ -15,8 +15,6 @@ IMPLEMENT_DYNAMIC(MyDialog, CDialogEx)
 HANDLE hThread_initDialogData = 0;//执行函数"初始化通话框数据"的线程句柄
 //创建全局基址对象
 BaseAddress bAObject;
-//本人玩家对象
-RP rpObject;
 
 
 extern MyDialog myDialog;
@@ -26,7 +24,7 @@ void initDialogData()
 {   //初始化基址
 	bAObject.init();
 	CString cstr; //用来将本人玩家的角色属性数据转换为文本
-	
+	RP rpObject;
 	while (true)
 	{
 		rpObject.OC::init();
@@ -79,6 +77,10 @@ BEGIN_MESSAGE_MAP(MyDialog, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTON_useItem, &MyDialog::OnBnClickedButtonuseitem)
 	ON_BN_CLICKED(IDC_BUTTON_TRAVERSAL, &MyDialog::OnBnClickedButtonTraversal)
 	ON_BN_CLICKED(IDC_BUTTON_SHOWBASEADDRESS, &MyDialog::OnBnClickedButtonShowbaseaddress)
+	ON_BN_CLICKED(IDC_BUTTON_MEDITATION, &MyDialog::OnBnClickedButtonMeditation)
+	ON_BN_CLICKED(IDC_BUTTON_CANCEL_MEDITATION, &MyDialog::OnBnClickedButtonCancelMeditation)
+	ON_BN_CLICKED(IDC_BUTTON_ORGANIZE_BACKPACK, &MyDialog::OnBnClickedButtonOrganizeBackpack)
+	ON_BN_CLICKED(IDC_BUTTON_REMOTE_ITEM_DESTRUCTION, &MyDialog::OnBnClickedButtonRemoteItemDestruction)
 END_MESSAGE_MAP()
 
 
@@ -90,18 +92,22 @@ END_MESSAGE_MAP()
 //使用物品Call
 void MyDialog::OnBnClickedButtonuseitem()
 {
+	RP rpObject;
 	rpObject.BackPack::init();
 	CString itemName;
-	this->idc_Edit_Logging.GetWindowTextW(itemName);
+    this->idc_Edit_Logging.GetWindowTextW(itemName);
 	DataStruct::data_Item item = rpObject.getItemData((wchar_t*)itemName.GetString());
-	rpObject.useItem(bAObject.获取本人对象(), 0, item.index, 1, bAObject.使用物品call());
-	
+	QWORD rax = rpObject.useItem(bAObject.获取本人对象(), 0, item.index, 1);
+	CString retn;
+	retn.Format(L"Rax==%llx", rax);
+	this->MessageBox(retn.GetString());
 }
 
 //遍历背包物品
 void MyDialog::OnBnClickedButtonTraversal()
 {
 	CString cstr;
+	RP rpObject;
 	rpObject.BackPack::init();
 	cstr = rpObject.TraversalBackPackItemData();
 	this->idc_Edit_Logging.SetWindowTextW(cstr.GetString());
@@ -113,4 +119,45 @@ void MyDialog::OnBnClickedButtonShowbaseaddress()
 	CString cstr;
 	cstr = bAObject.getBaseAddressData();
 	this->idc_Edit_Logging.SetWindowTextW(cstr.GetString());
+}
+
+//打坐Call
+void MyDialog::OnBnClickedButtonMeditation()
+{
+	RP rpObject;
+	QWORD rax = rpObject.meditation();
+	CString retn;
+	retn.Format(L"Rax==%llx", rax);
+	this->MessageBox(retn.GetString());
+}
+
+//取消打坐Call
+void MyDialog::OnBnClickedButtonCancelMeditation()
+{
+	RP rpObject;
+	QWORD rax = rpObject.cancelMeditation();
+	CString retn;
+	retn.Format(L"Rax==%llx", rax);
+	this->MessageBox(retn.GetString());
+}
+
+//整理背包Call
+void MyDialog::OnBnClickedButtonOrganizeBackpack()
+{
+	RP rpObject;
+	QWORD rax = rpObject.organizeBackpack(0);
+	CString retn;
+	retn.Format(L"Rax==%llx", rax);
+	this->MessageBox(retn.GetString());
+}
+
+
+void MyDialog::OnBnClickedButtonRemoteItemDestruction()
+{
+	CString itemName;
+	RP rpObject;
+	this->idc_Edit_Logging.GetWindowTextW(itemName);
+	rpObject.BackPack::init();
+	DataStruct::data_Item itemData = rpObject.getItemData((wchar_t*)(itemName.GetString()));
+	rpObject.remoteItemDestruction(itemData.index, itemData.id);
 }
