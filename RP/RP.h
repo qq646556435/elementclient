@@ -12,7 +12,7 @@ class RP:public OC , public BackPack, public Action
 public:
 	RP();
 	virtual ~RP() = default;
-	
+	void virtual init();
 };
 
 #endif
