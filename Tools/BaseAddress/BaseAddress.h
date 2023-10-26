@@ -15,8 +15,11 @@ private:
 	QWORD j整理装备call;
 	QWORD j使用物品call;
 	QWORD j背包对象的偏移;
+	QWORD j未知对象;
+	QWORD j未知对象指针;
 	QWORD jRemoteItemDestructionCall;//远程销毁物品Call
-	
+	QWORD jPacketizationCall;//组包Call
+	QWORD jBagOfHoldingCall;//乾坤袋Call
 public:
 	BaseAddress();
 	virtual ~BaseAddress();
@@ -28,6 +31,11 @@ public:
 	QWORD  使用物品call();
 	QWORD  背包对象的偏移();
 	QWORD  getRemoteItemDestructionCall();
+	QWORD  获取未知对象();
+	//获取乾坤袋Call
+	QWORD  getBagOfHoldingCall();
+	//获取组包Call
+	QWORD  getPacketizationCall();
 	BaseAddress& operator=(IN UINT value);
 	CString getBaseAddressData();
 };

@@ -81,6 +81,7 @@ BEGIN_MESSAGE_MAP(MyDialog, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTON_CANCEL_MEDITATION, &MyDialog::OnBnClickedButtonCancelMeditation)
 	ON_BN_CLICKED(IDC_BUTTON_ORGANIZE_BACKPACK, &MyDialog::OnBnClickedButtonOrganizeBackpack)
 	ON_BN_CLICKED(IDC_BUTTON_REMOTE_ITEM_DESTRUCTION, &MyDialog::OnBnClickedButtonRemoteItemDestruction)
+	ON_BN_CLICKED(IDC_BUTTON_BAG_OF_HOLDING, &MyDialog::OnBnClickedButtonBagOfHolding)
 END_MESSAGE_MAP()
 
 
@@ -156,6 +157,15 @@ void MyDialog::OnBnClickedButtonRemoteItemDestruction()
 	CString itemName;
 	this->idc_Edit_Logging.GetWindowTextW(itemName);
 	DataStruct::data_Item itemData = rpObject.getItemData((wchar_t*)(itemName.GetString()));
-	rpObject.remoteItemDestruction(itemData.index, itemData.id);
+	rpObject.packetization_RemoteItemDestruction(itemData.index, itemData.id);
 	
+}
+
+
+void MyDialog::OnBnClickedButtonBagOfHolding()
+{
+	CString itemName;
+	this->idc_Edit_Logging.GetWindowTextW(itemName);
+	DataStruct::data_Item itemData = rpObject.getItemData((wchar_t*)(itemName.GetString()));
+	rpObject.packetization_BagOfHolding(itemData.index);
 }

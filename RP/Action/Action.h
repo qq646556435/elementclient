@@ -16,7 +16,12 @@ public:
 	QWORD virtual organizeBackpack(IN QWORD rcx);
 	//远程销毁物品
 	void virtual remoteItemDestruction(IN QWORD itemIndex, IN QWORD itemId);
-
+	//组包销毁物品
+	void virtual packetization_RemoteItemDestruction(IN DWORD itemIndex, IN DWORD itemId);
+	//乾坤袋
+	void virtual bagOfHolding(IN DWORD itemIndex);
+	//组包乾坤袋
+	void virtual packetization_BagOfHolding(IN DWORD itemIndex);
 };
 
 #endif //__ACTION__H_7205A58E_B2CE_4438_8B38_55016F7E473B

@@ -35,4 +35,5 @@ public:
 	afx_msg void OnBnClickedButtonCancelMeditation();
 	afx_msg void OnBnClickedButtonOrganizeBackpack();
 	afx_msg void OnBnClickedButtonRemoteItemDestruction();
+	afx_msg void OnBnClickedButtonBagOfHolding();
 };

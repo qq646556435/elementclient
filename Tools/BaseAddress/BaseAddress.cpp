@@ -9,9 +9,9 @@ BYTE j整理装备call特征码[] = { 0x48, 0x8B, 0x5C, 0x24, 0x30, 0x48, 0x8B, 0x6C, 0
 BYTE j背包对象偏移的特征码[] = { 0x48, 0x8B, 0x07, 0x41, 0xB1, 0x01, 0x45, 0x33, 0xC0, 0x41, 0x0F, 0xB6, 0xD1, 0x48, 0x8B, 0xCF,
 0x48, 0x8B, 0x6C, 0x24, 0x50, 0x48, 0x8B, 0x5C, 0x24, 0x58, 0x48, 0x8B, 0x74, 0x24, 0x60, 0x48,
 0x83, 0xC4, 0x40, 0x5F };
-//远程销毁物品Call的特征码
-BYTE jRemoteItemDestructionCallFeatureCode[] = { 0xB8, 0x63, 0x02, 0x00, 0x00, 0x41, 0xB8, 0x06, 0x00, 0x00, 0x00, 0x66, 0x89, 0x03, 0x48, 0x8B,0xD3, 0x89, 0x7B, 0x02 };
-
+BYTE jPacketizationFeatureCode[] = { 0x48, 0x81, 0xC4, 0x18, 0x01, 0x00, 0x00, 0x41, 0x5F, 0x41, 0x5E, 0x5F, 0x5E, 0x5B, 0x5D, 0xC3,0xCC, 0xCC, 0xCC, 0xCC, 0x48, 0x8B, 0xC4, 0x57, 0x48, 0x83, 0xEC, 0x60 };//组包特征码
+BYTE jRemoteItemDestructionCallFeatureCode[] = { 0xB8, 0x63, 0x02, 0x00, 0x00, 0x41, 0xB8, 0x06, 0x00, 0x00, 0x00, 0x66, 0x89, 0x03, 0x48, 0x8B,0xD3, 0x89, 0x7B, 0x02 };//远程销毁物品Call的特征码
+BYTE jBagOfHoldingCallFeatureCode[] = { 0xB8, 0x2A, 0x01, 0x00, 0x00, 0x41, 0xB8, 0x02, 0x00, 0x00, 0x00, 0x66, 0x89, 0x03, 0x48, 0x8B,0xD3 };//乾坤袋Call的特征码
 
 BaseAddress::BaseAddress()
 {
@@ -26,12 +26,12 @@ bool BaseAddress::init()
 
 	FMC::init(::getpid(), L"elementclient64.exe");
 
-	this->j本人对象 = this->特征码定位基址(j未知对象特征码, sizeof(j未知对象特征码), 0x42, 3, 4, 7);
-	if (!this->j本人对象)
+	this->j未知对象指针 = this->特征码定位基址(j未知对象特征码, sizeof(j未知对象特征码), 0x42, 3, 4, 7);
+	if (!this->j未知对象指针)
 	{
 		return false;
 	}
-	this->j本人对象 = *((QWORD*)((*((QWORD*)((*((QWORD*)this->j本人对象)) + 0x38))) + 0x60));
+	this->j本人对象 = *((QWORD*)((*((QWORD*)((*((QWORD*)this->j未知对象指针)) + 0x38))) + 0x60));
 	if (!this->j本人对象)
 	{
 		return false;
@@ -77,6 +77,25 @@ bool BaseAddress::init()
 	{
 		return false;
 	}
+
+	this->j未知对象 = *((QWORD*)this->j未知对象指针);
+	if (!this->j未知对象)
+	{
+		return false;
+	}
+
+	this->jPacketizationCall = this->特征码定位call(jPacketizationFeatureCode, sizeof(jPacketizationFeatureCode), 0x114);
+	if (!this->jPacketizationCall)
+	{
+		return false;
+	}
+
+	this->jBagOfHoldingCall = this->特征码定位call(jBagOfHoldingCallFeatureCode, sizeof(jBagOfHoldingCallFeatureCode), 0x38);
+	if (!this->jBagOfHoldingCall)
+	{
+		return false;
+	}
+
 	return true;
 
 
@@ -118,6 +137,21 @@ QWORD BaseAddress::getRemoteItemDestructionCall()
 	return this->jRemoteItemDestructionCall;
 }
 
+QWORD BaseAddress::获取未知对象()
+{
+	return this->j未知对象;
+}
+
+QWORD BaseAddress::getBagOfHoldingCall()
+{
+	return this->jBagOfHoldingCall;
+}
+
+QWORD BaseAddress::getPacketizationCall()
+{
+	return this->jPacketizationCall;
+}
+
 BaseAddress& BaseAddress::operator=(IN UINT value)
 {
 	this->j本人对象 = value;
@@ -127,6 +161,10 @@ BaseAddress& BaseAddress::operator=(IN UINT value)
 	this->j背包对象的偏移 = value;
 	this->j整理装备call = value;
 	this->jRemoteItemDestructionCall = value;
+	this->j未知对象 = value;
+	this->j未知对象指针 = value;
+	this->jPacketizationCall = value;
+	this->jBagOfHoldingCall = value;
 	return *this;
 }
 
@@ -141,6 +179,9 @@ CString BaseAddress::getBaseAddressData()
 	cstr.AppendFormat(L"使用物品Call: %llX\r\n", this->j使用物品call);
 	cstr.AppendFormat(L"背包对象的偏移: %llX\r\n", this->j背包对象的偏移);
 	cstr.AppendFormat(L"远程销毁物品Call: %llX\r\n", this->jRemoteItemDestructionCall);
+	cstr.AppendFormat(L"未知对象: %llX\r\n", this->j未知对象);
+	cstr.AppendFormat(L"未知对象指针: %llX\r\n", this->j未知对象指针);
+	cstr.AppendFormat(L"组包Call: %llx\r\n", this->jPacketizationCall);
 	return cstr;
 }
 
