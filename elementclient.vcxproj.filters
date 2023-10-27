@@ -43,6 +43,9 @@
     <Filter Include="Tools\MemoryCheck">
       <UniqueIdentifier>{98f2ec02-d4e3-4a20-8eb6-0c845f119ca4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="RP\Warehouse">
+      <UniqueIdentifier>{ba0a8f7c-d611-4b28-99c9-8d2685815a22}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="elementclient.cpp">
@@ -77,6 +80,9 @@
     </ClCompile>
     <ClCompile Include="Tools\MemoryCheck\MemoryCheck.cpp">
       <Filter>Tools\MemoryCheck</Filter>
+    </ClCompile>
+    <ClCompile Include="RP\Warehouse\Warehouse.cpp">
+      <Filter>RP\Warehouse</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -132,6 +138,9 @@
     </ClInclude>
     <ClInclude Include="Tools\MemoryCheck\MemoryCheck.h">
       <Filter>Tools\MemoryCheck</Filter>
+    </ClInclude>
+    <ClInclude Include="RP\Warehouse\Warehouse.h">
+      <Filter>RP\Warehouse</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

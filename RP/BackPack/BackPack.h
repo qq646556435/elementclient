@@ -8,10 +8,11 @@
 //背包类
 class BackPack
 {
-private:
+protected:
 	//DWORD maxCap;//背包最大容量
 	//std::vector<Item> itemOject;//物品对象数组
 	QWORD backPackOBject; //背包对象
+	 
 protected:
 	//从内存读入数据到 item结构体 中
 	void memoryReadInDataTOItemStruct(IN QWORD currentItemOject, IN wchar_t* currentItemName, IN DataStruct::data_Item & item,IN UINT index);

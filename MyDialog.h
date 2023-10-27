@@ -36,4 +36,11 @@ public:
 	afx_msg void OnBnClickedButtonOrganizeBackpack();
 	afx_msg void OnBnClickedButtonRemoteItemDestruction();
 	afx_msg void OnBnClickedButtonBagOfHolding();
+	afx_msg void OnBnClickedButtonTraversalWarehouse();
+	afx_msg void OnBnClickedButtonStorageWarehouse();
+	afx_msg void OnBnClickedButtonRetrieveFromTheWarehouse();
+	afx_msg void OnBnClickedButtonOpenWarehouse();
+	afx_msg void OnBnClickedButtonCloseWarehouse();
+	afx_msg void OnBnClickedButton6();
+	afx_msg void OnBnClickedButton1();
 };

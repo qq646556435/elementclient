@@ -20,6 +20,13 @@ private:
 	QWORD jRemoteItemDestructionCall;//远程销毁物品Call
 	QWORD jPacketizationCall;//组包Call
 	QWORD jBagOfHoldingCall;//乾坤袋Call
+	QWORD jWarehouseOffsetValue;//仓库对象的偏移值
+	QWORD jWarehouseCall;//仓库Call
+	QWORD jOpenWarehouseCall;//打开仓库Call
+	QWORD jCloseWarehouseCall;//关闭仓库Call
+	QWORD jUnknownGlobalVariable;//未知的全局变量
+	QWORD jOpen仓库老板金玲音的对话界面Call;//打开仓库老板金玲音的对话界面Call
+	QWORD j3520OffsetValue;//3520偏移值
 public:
 	BaseAddress();
 	virtual ~BaseAddress();
@@ -32,10 +39,23 @@ public:
 	QWORD  背包对象的偏移();
 	QWORD  getRemoteItemDestructionCall();
 	QWORD  获取未知对象();
+	QWORD  getWarehouseOffsetValue();
 	//获取乾坤袋Call
 	QWORD  getBagOfHoldingCall();
 	//获取组包Call
 	QWORD  getPacketizationCall();
+	//获取仓库Call
+	QWORD getWarehouseCall();
+	//获取打开仓库Call
+	QWORD getOpenWarehouseCall();
+	//获取关闭仓库Call
+	QWORD getCloseWarehouseCall();
+	//获取未知全局变量
+	QWORD getUnknownGlobalVariable();
+	//获取打开仓库老板金玲音的对话界面Call
+	QWORD getOpen仓库老板金玲音的对话界面Call();
+	//获取3520偏移值
+	QWORD get3520OffsetValue();
 	BaseAddress& operator=(IN UINT value);
 	CString getBaseAddressData();
 };

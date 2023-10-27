@@ -5,9 +5,9 @@
 #include "../RP/OC/OC.h"
 #include "../RP/BackPack/BackPack.h"
 #include "../RP/Action/Action.h"
-
+#include "../RP/Warehouse/Warehouse.h"
 //±¾ÈËÍæ¼Ò
-class RP:public OC , public BackPack, public Action
+class RP:public OC , public BackPack, public Action,public Warehouse
 {
 public:
 	RP();

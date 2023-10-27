@@ -8,7 +8,12 @@ typedef  QWORD(FASTCALL* Function_cancelMeditationCall)();
 typedef  QWORD(FASTCALL* Function_organizeBackpackCall)(QWORD);
 typedef  void (FASTCALL* Function_remoteItemDestructionCall)(QWORD, QWORD);
 typedef  void (FASTCALL* Function_packetizationCall)(QWORD, QWORD, QWORD);
-typedef  void(FASTCALL* function_BagOfHoldingCall)(QWORD);
+typedef  void(FASTCALL* function_BagOfHoldingCall)(QWORD); 
+typedef  void(FASTCALL* function_WarehouseCall)(QWORD, QWORD, QWORD, QWORD);
+typedef  void(FASTCALL* function_OpenWarehouseCall)(QWORD,QWORD);
+typedef  QWORD(FASTCALL* Function_CloseWarehouseCall)(QWORD);
+typedef  QWORD(FASTCALL* Function_Open仓库老板金玲音对话界面Call)(QWORD, QWORD);
+
 extern   BaseAddress bAObject;
 
 Action::Action()
@@ -85,5 +90,83 @@ void Action::packetization_BagOfHolding(IN DWORD itemIndex)
 	Function_packetizationCall Call = (Function_packetizationCall)(bAObject.getPacketizationCall());
 	QWORD rcx = *((QWORD*)(bAObject.获取未知对象() + 0x40));
 	Call(rcx, (QWORD)packetizationBuffer, 0x06);
+}
+
+void Action::backPackToWarehouse(IN QWORD unknownObject, IN QWORD rdx=0, IN QWORD targetWarehouseIndex=0, IN QWORD soureBackPackIndex=0)
+{
+	function_WarehouseCall Call = (function_WarehouseCall)(bAObject.getWarehouseCall());
+	Call(unknownObject, rdx, targetWarehouseIndex, soureBackPackIndex);
+}
+
+void Action::packetization_BackPackToWarehouse(IN DWORD targetWarehouseIndex, IN DWORD soureBackPackIndex)
+{
+	Function_packetizationCall Call = (Function_packetizationCall)(bAObject.getPacketizationCall());
+	QWORD rcx = *((QWORD*)(bAObject.获取未知对象() + 0x40));
+	BYTE packetizationBuffer[10] = { 0x3A ,0x00 ,0x00 ,0x00 ,0x00 ,0x00 ,0x00,0x00 ,0x00 ,0x00 };
+	*((DWORD*)(&packetizationBuffer[2])) = targetWarehouseIndex;
+	*((DWORD*)(&packetizationBuffer[6])) = soureBackPackIndex;
+	Call(rcx, (QWORD)packetizationBuffer, 0x0A);
+}
+
+void Action::warehouseToBackPack(IN QWORD unknownObject, IN QWORD rdx=0, IN QWORD soureWarehouseIndex=0, IN QWORD targetBackPackIndex=0)
+{
+	function_WarehouseCall Call = (function_WarehouseCall)(bAObject.getWarehouseCall());
+	Call(unknownObject, rdx, soureWarehouseIndex, targetBackPackIndex);
+}
+
+void Action::packetization_WarehouseToBackPack(IN DWORD soureWarehouseIndex, IN DWORD targetBackPackIndex)
+{
+	Function_packetizationCall Call = (Function_packetizationCall)(bAObject.getPacketizationCall());
+	QWORD rcx = *((QWORD*)(bAObject.获取未知对象() + 0x40));
+	BYTE packetizationBuffer[10] = { 0x3A ,0x00 ,0x00 ,0x00 ,0x00 ,0x00 ,0x00,0x00 ,0x00 ,0x00 };
+	*((DWORD*)(&packetizationBuffer[2])) = soureWarehouseIndex;
+	*((DWORD*)(&packetizationBuffer[6])) = targetBackPackIndex;
+	Call(rcx, (QWORD)packetizationBuffer, 0x0A);
+}
+
+void Action::openWarehouseCall(IN QWORD unknownGlobalVariable, IN QWORD rdx)
+{
+	function_OpenWarehouseCall Call = (function_OpenWarehouseCall)(bAObject.getOpenWarehouseCall());
+	Call(unknownGlobalVariable,rdx);
+}
+
+void Action::packetization_OpenWarehouseCall()
+{
+	QWORD rcx = *((QWORD*)(bAObject.获取未知对象() + 0x40));
+	BYTE  packetizationBuffer[14] = { 0x25,0x00 ,0x0F ,0x00 ,0x00 ,0x00 ,0x04 ,0x00 ,0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+	QWORD r8 = 0x0E;
+	Function_packetizationCall Call = (Function_packetizationCall)(bAObject.getPacketizationCall());
+	Call(rcx, (QWORD)packetizationBuffer, r8);
+	
+}
+
+QWORD Action::closeWarehouseCall(IN QWORD unknownObject)
+{
+
+	Function_CloseWarehouseCall Call = (Function_CloseWarehouseCall)(bAObject.getCloseWarehouseCall());
+	QWORD rax = Call(unknownObject);
+	return rax;
+}
+
+void Action::packetization_CloseWarehouseCall()
+{
+	QWORD rcx = *((QWORD*)(bAObject.获取未知对象() + 0x40));
+	BYTE  packetizationBuffer[2] = { 0x2A ,0x00 };
+	QWORD r8 = 0x02;
+	Function_packetizationCall Call = (Function_packetizationCall)(bAObject.getPacketizationCall());
+	Call(rcx, (QWORD)packetizationBuffer, r8);
+}
+
+QWORD Action::open仓库老板金玲音对话界面Call(IN QWORD unknownObjectOne, IN QWORD unknownObjectTwo)
+{
+	Function_Open仓库老板金玲音对话界面Call Call = (Function_Open仓库老板金玲音对话界面Call)(bAObject.getOpen仓库老板金玲音的对话界面Call());
+	QWORD rax = Call(unknownObjectOne, unknownObjectTwo);
+	return rax;
+}
+
+void Action::Close仓库老板金玲音对话界面Call()
+{
+	
+	
 }
 
