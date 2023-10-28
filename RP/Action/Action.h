@@ -42,6 +42,16 @@ public:
 	QWORD virtual open仓库老板金玲音对话界面Call(IN QWORD unknownObjectOne, IN QWORD unknownObjectTwo);
     //关闭仓库老板金玲音对话界面的Call
 	void virtual Close仓库老板金玲音对话界面Call();
+	//屏蔽环境Call
+	QWORD virtual blockOutTheEnvironmentCall();
+	//开启天人合一
+	QWORD virtual openUnityOfHeavenAndHumanity();
+	//关闭天人合一
+	QWORD virtual closeUnityOfHeavenAndHumanity();
+	//组包开启天人合一
+	void virtual packetization_OpenUnityOfHeavenAndHumanity();
+	//组包关闭天人合一
+	void virtual packetization_CloseUnityOfHeavenAndHumanity();
 };
 
 #endif //__ACTION__H_7205A58E_B2CE_4438_8B38_55016F7E473B

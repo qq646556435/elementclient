@@ -13,6 +13,8 @@ typedef  void(FASTCALL* function_WarehouseCall)(QWORD, QWORD, QWORD, QWORD);
 typedef  void(FASTCALL* function_OpenWarehouseCall)(QWORD,QWORD);
 typedef  QWORD(FASTCALL* Function_CloseWarehouseCall)(QWORD);
 typedef  QWORD(FASTCALL* Function_Open仓库老板金玲音对话界面Call)(QWORD, QWORD);
+typedef  QWORD(FASTCALL* Function_BlockOutTheEnvironmentCall)(QWORD);
+typedef  QWORD(FASTCALL* Function_UnityOfHeavenAndHumanityCall)(QWORD, QWORD, QWORD);
 
 extern   BaseAddress bAObject;
 
@@ -159,14 +161,63 @@ void Action::packetization_CloseWarehouseCall()
 
 QWORD Action::open仓库老板金玲音对话界面Call(IN QWORD unknownObjectOne, IN QWORD unknownObjectTwo)
 {
-	Function_Open仓库老板金玲音对话界面Call Call = (Function_Open仓库老板金玲音对话界面Call)(bAObject.getOpen仓库老板金玲音的对话界面Call());
-	QWORD rax = Call(unknownObjectOne, unknownObjectTwo);
-	return rax;
+	
+	return 0;
 }
+
+
 
 void Action::Close仓库老板金玲音对话界面Call()
 {
 	
+	HWND hwnd = ::FindWindow(L"ZElementClient Window", 0);
+	::SetForegroundWindow(hwnd);
+	// 模拟按下ESC键
+	keybd_event(VK_ESCAPE, 0, 0, 0);
+
+	// 模拟释放ESC键
+	keybd_event(VK_ESCAPE, 0, KEYEVENTF_KEYUP, 0);
 	
+	
+}
+
+QWORD Action::blockOutTheEnvironmentCall()
+{
+	QWORD unknownObject = *((QWORD*)(bAObject.获取未知对象() + 0x38));
+	Function_BlockOutTheEnvironmentCall call = (Function_BlockOutTheEnvironmentCall)(bAObject.getBlockOutTheEnvironmentCall());
+	QWORD rax = call(unknownObject);
+	return rax;
+}
+
+QWORD Action::openUnityOfHeavenAndHumanity()
+{
+	Function_UnityOfHeavenAndHumanityCall call = (Function_UnityOfHeavenAndHumanityCall)(bAObject.getUnityOfHeavenAndHumanityCall());
+	QWORD rax = call(1, 0, 0);
+	return rax;
+}
+
+QWORD Action::closeUnityOfHeavenAndHumanity()
+{
+	Function_UnityOfHeavenAndHumanityCall call = (Function_UnityOfHeavenAndHumanityCall)(bAObject.getUnityOfHeavenAndHumanityCall());
+	QWORD rax = call(0, 0, 0);
+	return rax;
+}
+
+void Action::packetization_OpenUnityOfHeavenAndHumanity()
+{
+	QWORD rcx = *((QWORD*)(bAObject.获取未知对象() + 0x40));
+	BYTE  packetizationBuffer[5] = { 0x72 ,0x00 ,0x01 ,0x00,0x00 };
+	QWORD r8 = 0x05;
+	Function_packetizationCall Call = (Function_packetizationCall)(bAObject.getPacketizationCall());
+	Call(rcx, (QWORD)packetizationBuffer, r8);
+}
+
+void Action::packetization_CloseUnityOfHeavenAndHumanity()
+{
+	QWORD rcx = *((QWORD*)(bAObject.获取未知对象() + 0x40));
+	BYTE  packetizationBuffer[5] = { 0x72 ,0x00 ,0x00 ,0x00,0x00 };
+	QWORD r8 = 0x05;
+	Function_packetizationCall Call = (Function_packetizationCall)(bAObject.getPacketizationCall());
+	Call(rcx, (QWORD)packetizationBuffer, r8);
 }
 

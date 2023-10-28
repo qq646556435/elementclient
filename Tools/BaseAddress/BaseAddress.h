@@ -27,6 +27,8 @@ private:
 	QWORD jUnknownGlobalVariable;//未知的全局变量
 	QWORD jOpen仓库老板金玲音的对话界面Call;//打开仓库老板金玲音的对话界面Call
 	QWORD j3520OffsetValue;//3520偏移值
+	QWORD jBlockOutTheEnvironmentCall;//屏蔽环境Call
+	QWORD jUnityOfHeavenAndHumanityCall;//天人合一Call
 public:
 	BaseAddress();
 	virtual ~BaseAddress();
@@ -56,6 +58,10 @@ public:
 	QWORD getOpen仓库老板金玲音的对话界面Call();
 	//获取3520偏移值
 	QWORD get3520OffsetValue();
+	//获取屏蔽环境Call
+	QWORD getBlockOutTheEnvironmentCall();
+    //获取天人合一Call
+	QWORD getUnityOfHeavenAndHumanityCall();
 	BaseAddress& operator=(IN UINT value);
 	CString getBaseAddressData();
 };

@@ -89,6 +89,9 @@ BEGIN_MESSAGE_MAP(MyDialog, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTON_CLOSE_WAREHOUSE, &MyDialog::OnBnClickedButtonCloseWarehouse)
 	ON_BN_CLICKED(IDC_BUTTON6, &MyDialog::OnBnClickedButton6)
 	ON_BN_CLICKED(IDC_BUTTON1, &MyDialog::OnBnClickedButton1)
+	ON_BN_CLICKED(IDC_BUTTON2, &MyDialog::OnBnClickedButton2)
+	ON_BN_CLICKED(IDC_BUTTON3, &MyDialog::OnBnClickedButton3)
+	ON_BN_CLICKED(IDC_BUTTON4, &MyDialog::OnBnClickedButton4)
 END_MESSAGE_MAP()
 
 
@@ -220,44 +223,30 @@ void MyDialog::OnBnClickedButton6()
 	rcx = [[[[[[0x0000000141561F00]+0x38]+0x60]+0x3520]+0x68]+2*8]
     rdx = [[[[[[0x0000000141561F00]+0x38]+0x10]+0x50]+0x98]+4e*8]
 	*/
-	CString cstr;
-	QWORD rcx = bAObject.get3520OffsetValue();
-	cstr.Format(L"%llx", rcx);
-	::MessageBox(0, cstr.GetString(), 0, 0);
-	rcx = *((QWORD*)(bAObject.获取本人对象() + rcx));
-	cstr.Format(L"%llx", rcx);
-	::MessageBox(0, cstr.GetString(), 0, 0);
-	rcx = *((QWORD*)(rcx + 0x68));
-	cstr.Format(L"%llx", rcx);
-	::MessageBox(0, cstr.GetString(), 0, 0);
-	rcx = *((QWORD*)(rcx + (2*8)));
-	cstr.Format(L"%llx", rcx);
-	::MessageBox(0, cstr.GetString(), 0, 0);
-
-	QWORD rdx = bAObject.获取未知对象();
-	cstr.Format(L"%llx", rdx);
-	::MessageBox(0, cstr.GetString(), 0, 0);
-	rdx = *((QWORD*)(rdx + 0x38));
-	cstr.Format(L"%llx", rdx);
-	::MessageBox(0, cstr.GetString(), 0, 0);
-	rdx= *((QWORD*)(rdx + 0x10));
-	cstr.Format(L"%llx", rdx);
-	::MessageBox(0, cstr.GetString(), 0, 0);
-	rdx = *((QWORD*)(rdx + 0x50));
-	cstr.Format(L"%llx", rdx);
-	::MessageBox(0, cstr.GetString(), 0, 0);
-	rdx = *((QWORD*)(rdx + 0x98));
-	cstr.Format(L"%llx", rdx);
-	::MessageBox(0, cstr.GetString(), 0, 0);
-	rdx = *((QWORD*)(rdx + (0x4e*8)));
-	cstr.Format(L"%llx", rdx);
-	::MessageBox(0, cstr.GetString(), 0, 0);
-
-	rpObject.open仓库老板金玲音对话界面Call(rcx, rdx);
+	
 }
 
 
 void MyDialog::OnBnClickedButton1()
 {
 	rpObject.Close仓库老板金玲音对话界面Call();
+}
+
+
+void MyDialog::OnBnClickedButton2()
+{
+	rpObject.blockOutTheEnvironmentCall();
+}
+
+
+void MyDialog::OnBnClickedButton3()
+{
+	rpObject.packetization_OpenUnityOfHeavenAndHumanity();
+}
+
+
+
+void MyDialog::OnBnClickedButton4()
+{
+	rpObject.packetization_CloseUnityOfHeavenAndHumanity();
 }
