@@ -29,6 +29,14 @@ private:
 	QWORD j3520OffsetValue;//3520偏移值
 	QWORD jBlockOutTheEnvironmentCall;//屏蔽环境Call
 	QWORD jUnityOfHeavenAndHumanityCall;//天人合一Call
+	QWORD j和死亡回城有关的全局变量;//和死亡回城有关的全局变量
+	QWORD jResPawnCall;//死亡回城Call
+	QWORD jChangeServerCall;//换线路Call
+	QWORD jSkillsArrayOffsetValue;//技能数组偏移值
+	QWORD jSkillsNumberOffsetValue;//技能总数偏移值
+	QWORD jSelectCharacterObjectOfIdOffsetValue;//选中角色对象的Id偏移值
+	QWORD jCastSkillCall;//释放技能Call
+	
 public:
 	BaseAddress();
 	virtual ~BaseAddress();
@@ -62,6 +70,20 @@ public:
 	QWORD getBlockOutTheEnvironmentCall();
     //获取天人合一Call
 	QWORD getUnityOfHeavenAndHumanityCall();
+	//获取和死亡回城有关的全局变量
+	QWORD get和死亡回城有关的全局变量();
+	//获取死亡回城Call
+	QWORD getResPawnCall();
+	//获取换线路Call
+	QWORD getChangeServerCall();
+	//获取技能数组的偏移量
+	QWORD getSkillsArrayOffsetValue();
+	//获取技能总数的偏移值
+	QWORD getSkillsNumberOffsetValue();
+	//获取选中角色对象id的偏移值
+	QWORD getSelectCharacterObjectOfIdOffsetValue();
+	//获取释放技能Call
+	QWORD getCastSkillCall();
 	BaseAddress& operator=(IN UINT value);
 	CString getBaseAddressData();
 };

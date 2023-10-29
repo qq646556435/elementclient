@@ -6,13 +6,16 @@
 #include "../RP/BackPack/BackPack.h"
 #include "../RP/Action/Action.h"
 #include "../RP/Warehouse/Warehouse.h"
+#include "../RP/Skills/Skills.h"
 //本人玩家
-class RP:public OC , public BackPack, public Action,public Warehouse
+class RP:public OC , public BackPack, public Action,public Warehouse,public Skills
 {
 public:
 	RP();
 	virtual ~RP() = default;
 	void virtual init();
+	//自我施法
+	DWORD virtual selfCasting(IN QWORD skillId);
 };
 
 #endif

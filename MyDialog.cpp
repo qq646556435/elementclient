@@ -92,6 +92,12 @@ BEGIN_MESSAGE_MAP(MyDialog, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTON2, &MyDialog::OnBnClickedButton2)
 	ON_BN_CLICKED(IDC_BUTTON3, &MyDialog::OnBnClickedButton3)
 	ON_BN_CLICKED(IDC_BUTTON4, &MyDialog::OnBnClickedButton4)
+	ON_BN_CLICKED(IDC_BUTTON5, &MyDialog::OnBnClickedButton5)
+	ON_BN_CLICKED(IDC_BUTTON7, &MyDialog::OnBnClickedButton7)
+	ON_BN_CLICKED(IDC_BUTTON8, &MyDialog::OnBnClickedButton8)
+	ON_BN_CLICKED(IDC_BUTTON9, &MyDialog::OnBnClickedButton9)
+	ON_BN_CLICKED(IDC_BUTTON10, &MyDialog::OnBnClickedButton10)
+	ON_BN_CLICKED(IDC_BUTTON11, &MyDialog::OnBnClickedButton11)
 END_MESSAGE_MAP()
 
 
@@ -249,4 +255,48 @@ void MyDialog::OnBnClickedButton3()
 void MyDialog::OnBnClickedButton4()
 {
 	rpObject.packetization_CloseUnityOfHeavenAndHumanity();
+}
+
+
+void MyDialog::OnBnClickedButton5()
+{
+	
+	rpObject.resPawn();
+}
+
+
+void MyDialog::OnBnClickedButton7()
+{
+	
+	rpObject.changeServer(5);
+	
+	
+}
+
+
+void MyDialog::OnBnClickedButton8()
+{
+	rpObject.getSkillsData(220);
+}
+
+
+void MyDialog::OnBnClickedButton9()
+{
+	DWORD id = rpObject.getSelectCharacterObjectOfId();
+	CString cstr;
+	cstr.Format(L"选中的当前角色对象的ID: %ld", id);
+	this->idc_Edit_Logging.SetWindowTextW(cstr.GetString());
+}
+
+
+void MyDialog::OnBnClickedButton10()
+{
+	rpObject.selfCasting(0x932);
+}
+
+
+void MyDialog::OnBnClickedButton11()
+{
+	QWORD InGameCharacterObject = 0x0034A344;
+	rpObject.casting(0x932, &InGameCharacterObject);
 }

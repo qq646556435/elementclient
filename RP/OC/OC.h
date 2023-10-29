@@ -8,7 +8,7 @@
 
 class OC
 {
-private:
+protected:
 	
  DataStruct::data_OCInfo ╫ги╚пео╒ = { 0 };
 

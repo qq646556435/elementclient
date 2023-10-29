@@ -33,12 +33,23 @@ namespace DataStruct
 	struct data_OCInfo
 	{
 		wchar_t* 本人名称;
+		DWORD id;
 		QWORD 当前血量;
 		QWORD 最大血量;
 		QWORD 当前蓝量;
 		QWORD 最大蓝量;
 		float x坐标;
 		float y坐标;
+	};
+
+	//本人玩家的技能属性信息
+	struct data_Skills
+	{
+		PTCHAR skillsName;//技能名称
+		DWORD id;//技能id
+		DWORD cooldownTimer;//当前冷却值
+		DWORD maximumCooldown;//最大冷却值
+		BYTE  cooldownFlag;//冷却标志
 	};
 
 }

@@ -52,6 +52,17 @@ public:
 	void virtual packetization_OpenUnityOfHeavenAndHumanity();
 	//组包关闭天人合一
 	void virtual packetization_CloseUnityOfHeavenAndHumanity();
+	//死亡回城
+	QWORD virtual resPawn();
+	//换线路
+	QWORD virtual changeServer(IN UINT server);
+	//获取选中的角色对象id
+	DWORD virtual getSelectCharacterObjectOfId();
+	//自我施法
+	DWORD virtual selfCasting(IN QWORD skillId);
+	//施法: pInGameCharacterObject(指向游戏内角色对象id的指针)
+	DWORD virtual casting(IN QWORD skillId, IN PQWORD pInGameCharacterObject);
+	
 };
 
 #endif //__ACTION__H_7205A58E_B2CE_4438_8B38_55016F7E473B

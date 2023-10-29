@@ -1,7 +1,7 @@
 #include "../../pch.h"
 #include "Action.h"
 #include "../../Tools/BaseAddress/BaseAddress.h"
-
+#include <iostream>
 typedef  QWORD(FASTCALL* Function_useItemCall)(QWORD, QWORD, QWORD, QWORD);
 typedef  QWORD(FASTCALL* Function_meditationCall)();
 typedef  QWORD(FASTCALL* Function_cancelMeditationCall)();
@@ -15,6 +15,9 @@ typedef  QWORD(FASTCALL* Function_CloseWarehouseCall)(QWORD);
 typedef  QWORD(FASTCALL* Function_Open仓库老板金玲音对话界面Call)(QWORD, QWORD);
 typedef  QWORD(FASTCALL* Function_BlockOutTheEnvironmentCall)(QWORD);
 typedef  QWORD(FASTCALL* Function_UnityOfHeavenAndHumanityCall)(QWORD, QWORD, QWORD);
+typedef  QWORD(FASTCALL* Function_RespawnCall)(QWORD, PTCHAR);
+typedef  QWORD(FASTCALL* Function_ChangeServerCall)(QWORD, QWORD);
+typedef  QWORD(FASTCALL* Function_SpellcastingCall)(QWORD, QWORD, QWORD, QWORD, QWORD);
 
 extern   BaseAddress bAObject;
 
@@ -219,5 +222,53 @@ void Action::packetization_CloseUnityOfHeavenAndHumanity()
 	QWORD r8 = 0x05;
 	Function_packetizationCall Call = (Function_packetizationCall)(bAObject.getPacketizationCall());
 	Call(rcx, (QWORD)packetizationBuffer, r8);
+}
+
+QWORD Action::resPawn()
+{
+	QWORD mRcx = *((QWORD*)(*((QWORD*)(bAObject.get和死亡回城有关的全局变量() + 0x8)) + 0x10));
+	PTCHAR mRdx = L"confirm";
+	Function_RespawnCall mCall = (Function_RespawnCall)(bAObject.getResPawnCall());
+	QWORD mRax = 0;
+	
+	mRax = mCall(mRcx, mRdx);
+
+	return mRax;
+		
+}
+
+QWORD Action::changeServer(IN UINT server)
+{
+	
+
+	QWORD unknownObject = *((QWORD*)(bAObject.获取未知对象() + 0x40));
+	Function_ChangeServerCall call = (Function_ChangeServerCall)(bAObject.getChangeServerCall());
+	QWORD rax = call(unknownObject, server);
+
+	return rax;
+}
+
+DWORD Action::getSelectCharacterObjectOfId()
+{
+	DWORD id = *((PDWORD)(bAObject.获取本人对象() + bAObject.getSelectCharacterObjectOfIdOffsetValue()));
+	return id;
+}
+
+DWORD Action::selfCasting(IN QWORD skillId)
+{
+
+	return true;
+}
+
+DWORD Action::casting(IN QWORD skillId, IN PQWORD pInGameCharacterObject)
+{
+	QWORD mSkillId = skillId;
+	QWORD rdx = 0x80;
+	QWORD r8 = 0x01;
+	QWORD r9 = (QWORD)pInGameCharacterObject;
+	QWORD rsp_0x20 = 0x0;
+	Function_SpellcastingCall call = (Function_SpellcastingCall)bAObject.getCastSkillCall();
+	QWORD rax = call(mSkillId, rdx, r8, r9, rsp_0x20);
+	return rax;
 }
 

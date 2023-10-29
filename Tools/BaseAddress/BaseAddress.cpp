@@ -21,6 +21,12 @@ BYTE jOpen仓库老板金玲音的对话界面CallFeatureCode[] = { 0x8B, 0x87, 0xBC, 0x03, 
 BYTE j3520OffsetValueFeatureCode[] = { 0xC6, 0x44, 0x24, 0x50, 0x00, 0x49, 0x8B, 0x41, 0x10, 0x48, 0x8B, 0x88, 0xF8, 0x01, 0x00, 0x00,0x33, 0xD2 };//3520偏移值的特征码
 BYTE jBlockOutTheEnvironmentCallFeatureCode[] = { 0x8B, 0x08, 0x89, 0x8B, 0x88, 0x02, 0x00, 0x00, 0x8B, 0x48, 0x04, 0x89, 0x8B, 0x8C, 0x02, 0x00,0x00, 0x8B, 0x40, 0x08, 0x89, 0x83,0x90, 0x02, 0x00, 0x00, 0x48, 0x8B, 0x47, 0x60, 0x48, 0x85,0xC0 }; //屏蔽环境的特征码
 BYTE jUnityOfHeavenAndHumanityCallFeatureCode[] = { 0xB8, 0x96, 0x00, 0x00, 0x00, 0x41, 0xB8, 0x0C, 0x00, 0x00, 0x00, 0x66, 0x89, 0x03, 0x48, 0x8B,0xD3, 0x44, 0x89, 0x73, 0x02, 0x66,0x89, 0x6B, 0x06, 0x66, 0x89, 0x73, 0x08, 0x66, 0x89, 0x7B,0x0A }; //天人合一的特征码
+BYTE j和死亡回城有关的全局变量FeatureCode[] = { 0x48, 0x8B, 0x01, 0x33, 0xD2, 0x48, 0x83, 0xC4, 0x28, 0x48, 0xFF, 0x60, 0x70, 0x48, 0x83, 0xC4, 0x28, 0xC3 }; //和死亡回城有关的全局变量的特征码
+BYTE jChangeServerCallFeatureCode[] = { 0x48, 0x89, 0x44, 0x24, 0x28, 0xC7, 0x44, 0x24, 0x30, 0xAA, 0x0F, 0x00, 0x00, 0x89, 0x54, 0x24,0x38, 0x8B, 0x81, 0x1C, 0x02, 0x00, 0x00, 0x89, 0x44, 0x24, 0x3C, 0x45, 0x33, 0xC0, 0x48, 0x8D,0x54, 0x24, 0x28 }; //换线路Call的特征码
+BYTE jSkillsArrayOffsetValueFeatureCode[] = { 0x48, 0x89, 0x5C, 0x24, 0x40, 0x48, 0x89, 0x6C, 0x24, 0x48, 0x48, 0x8D, 0x68, 0x04, 0x48, 0x89,0x74, 0x24, 0x50, 0x48, 0x89, 0x7C, 0x24, 0x58, 0x4C, 0x89, 0x74, 0x24, 0x20, 0x0F, 0x1F, 0x84,0x00, 0x00, 0x00, 0x00, 0x00 }; //技能数组偏移量的特征码
+BYTE jSkillsNumberOffsetValueFeatureCode[] = { 0x48, 0x89, 0x5C, 0x24, 0x40, 0x48, 0x89, 0x6C, 0x24, 0x48, 0x48, 0x8D, 0x68, 0x04, 0x48, 0x89,0x74, 0x24, 0x50, 0x48, 0x89, 0x7C, 0x24, 0x58, 0x4C, 0x89, 0x74, 0x24, 0x20, 0x0F, 0x1F, 0x84,0x00, 0x00, 0x00, 0x00, 0x00 };//技能总数的偏移值
+BYTE jSelectCharacterObjectOfIdOffsetValueFeatureCode[] = { 0xBF, 0x06, 0x00, 0x00, 0x00, 0x33, 0xF6, 0x0F, 0x1F, 0x00, 0x48, 0x8B, 0x0B, 0x48, 0x85, 0xC9 };//选中角色对象id的偏移值的特征码
+BYTE jCastSkillCallFeatureCode[] = { 0x48, 0x8B, 0x5C, 0x24, 0x40, 0x48, 0x8B, 0x6C, 0x24, 0x48, 0x48, 0x8B, 0x74, 0x24, 0x50, 0x48,0x8B, 0x7C, 0x24, 0x58, 0x48, 0x83, 0xC4, 0x20, 0x41, 0x5F, 0x41, 0x5E, 0x41, 0x5C, 0xC3, 0xCC,0xCC, 0xCC, 0xCC, 0xCC, 0xCC, 0xCC, 0xCC, 0xCC, 0xCC, 0x48, 0x89, 0x5C, 0x24, 0x08, 0x48, 0x89,0x6C, 0x24, 0x10, 0x48, 0x89, 0x74, 0x24, 0x18 };//释放技能Call的特征码
 
 BaseAddress::BaseAddress()
 {
@@ -130,7 +136,7 @@ bool BaseAddress::init()
 		return false;
 	}
 
-	this->jUnknownGlobalVariable = this->特征码定位基址(jUnknownGlobalVariableFeatureCode, sizeof(jUnknownGlobalVariableFeatureCode), 0x142, 3, 3, 4);
+	this->jUnknownGlobalVariable = this->特征码定位基址(jUnknownGlobalVariableFeatureCode, sizeof(jUnknownGlobalVariableFeatureCode), 0x142, 3, 3, 7);
 	if (!this->jUnknownGlobalVariable)
 	{
 		return false;
@@ -159,7 +165,50 @@ bool BaseAddress::init()
 	{
 		return false;
 	}
+
+	this->j和死亡回城有关的全局变量 = this->特征码定位基址(j和死亡回城有关的全局变量FeatureCode, sizeof(j和死亡回城有关的全局变量FeatureCode), 0x15, 3, 4, 7);
+	if (!this->j和死亡回城有关的全局变量)
+	{
+		return false;
+	}
+	
+	this->jResPawnCall = *((QWORD*)(*((QWORD*)(this->j和死亡回城有关的全局变量 + 0x8)) + 0x8));
+	if (!this->jResPawnCall)
+	{
+		return false;
+	}
+	
+	this->jChangeServerCall = this->特征码定位call(jChangeServerCallFeatureCode, sizeof(jChangeServerCallFeatureCode), 0x3C);
+	if (!this->jChangeServerCall)
+	{
+		return false;
+	}
+
+	this->jSkillsArrayOffsetValue = this->特征码定位偏移(jSkillsArrayOffsetValueFeatureCode, sizeof(jSkillsArrayOffsetValueFeatureCode), 0x3A, 3, 4);
+	if (!this->jSkillsArrayOffsetValue)
+	{
+		return false;
+	}
+
+	this->jSkillsNumberOffsetValue = this->特征码定位偏移(jSkillsNumberOffsetValueFeatureCode, sizeof(jSkillsNumberOffsetValueFeatureCode), 0x25, 3, 4);
+	if (!this->jSkillsNumberOffsetValue)
+	{
+		return false;
+	}
+
+	this->jSelectCharacterObjectOfIdOffsetValue = this->特征码定位偏移(jSelectCharacterObjectOfIdOffsetValueFeatureCode, sizeof(jSelectCharacterObjectOfIdOffsetValueFeatureCode), 0x98, 2, 4);
+	if (!this->jSelectCharacterObjectOfIdOffsetValue)
+	{
+		return false;
+	}
+
+	this->jCastSkillCall = this->特征码定位call(jCastSkillCallFeatureCode, sizeof(jCastSkillCallFeatureCode), 0xE9);
+	if (!this->jCastSkillCall)
+	{
+		return false;
+	}
 	return true;
+
 
 
 
@@ -260,6 +309,41 @@ QWORD BaseAddress::getUnityOfHeavenAndHumanityCall()
 	return this->jUnityOfHeavenAndHumanityCall;
 }
 
+QWORD BaseAddress::get和死亡回城有关的全局变量()
+{
+	return this->j和死亡回城有关的全局变量;
+}
+
+QWORD BaseAddress::getResPawnCall()
+{
+	return this->jResPawnCall;
+}
+
+QWORD BaseAddress::getChangeServerCall()
+{
+	return this->jChangeServerCall;
+}
+
+QWORD BaseAddress::getSkillsArrayOffsetValue()
+{
+	return this->jSkillsArrayOffsetValue;
+}
+
+QWORD BaseAddress::getSkillsNumberOffsetValue()
+{
+	return this->jSkillsNumberOffsetValue;
+}
+
+QWORD BaseAddress::getSelectCharacterObjectOfIdOffsetValue()
+{
+	return this->jSelectCharacterObjectOfIdOffsetValue;
+}
+
+QWORD BaseAddress::getCastSkillCall()
+{
+	return this->jCastSkillCall;
+}
+
 BaseAddress& BaseAddress::operator=(IN UINT value)
 {
 	this->j本人对象 = value;
@@ -282,6 +366,13 @@ BaseAddress& BaseAddress::operator=(IN UINT value)
 	this->j3520OffsetValue = value;
 	this->jBlockOutTheEnvironmentCall = value;
 	this->jUnityOfHeavenAndHumanityCall = value;
+	this->j和死亡回城有关的全局变量 = value;
+	this->jResPawnCall = value;
+	this->jChangeServerCall = value;
+	this->jSkillsArrayOffsetValue = value;
+	this->jSkillsNumberOffsetValue = value;
+	this->jSelectCharacterObjectOfIdOffsetValue = value;
+	this->jCastSkillCall = value;
 	return *this;
 }
 
@@ -307,6 +398,13 @@ CString BaseAddress::getBaseAddressData()
 	cstr.AppendFormat(L"打开仓库老板金玲音的对话界面Call: %llx\r\n", this->jOpen仓库老板金玲音的对话界面Call);
 	cstr.AppendFormat(L"屏蔽环境Call: %llx\r\n", this->jBlockOutTheEnvironmentCall);
 	cstr.AppendFormat(L"天人合一Call: %llx\r\n", this->jUnityOfHeavenAndHumanityCall);
+	cstr.AppendFormat(L"和死亡回城有关的全局变量: %llx\r\n", this->j和死亡回城有关的全局变量);
+	cstr.AppendFormat(L"和死亡回城Call: %llx\r\n", this->jResPawnCall);
+	cstr.AppendFormat(L"换线路Call: %llx\r\n", this->jChangeServerCall);
+	cstr.AppendFormat(L"技能数组偏移量: %llx\r\n", this->jSkillsArrayOffsetValue);
+	cstr.AppendFormat(L"技能总数偏移值: %llx\r\n", this->jSkillsNumberOffsetValue);
+	cstr.AppendFormat(L"选中角色对象id的偏移值: %llx\r\n", this->jSelectCharacterObjectOfIdOffsetValue);
+	cstr.AppendFormat(L"释放技能Call: %llx\r\n", this->jCastSkillCall);
 	return cstr;
 }
 
