@@ -7,39 +7,39 @@ public:
 	Action();
 	virtual ~Action();
 	//使用指定物品
-	QWORD virtual useItem(IN QWORD 本人对象, IN QWORD rdx, IN QWORD 下标, IN QWORD r9);
+	QWORD virtual useItem(IN QWORD 下标);
 	//打坐
 	QWORD virtual meditation();
 	//取消打坐
 	QWORD virtual cancelMeditation();
 	//整理背包
-	QWORD virtual organizeBackpack(IN QWORD rcx);
+	QWORD virtual organizeBackpack();
 	//远程销毁物品
-	void virtual remoteItemDestruction(IN QWORD itemIndex, IN QWORD itemId);
+	void virtual remoteItemDestruction(IN PTCHAR itemName);
 	//组包销毁物品
-	void virtual packetization_RemoteItemDestruction(IN DWORD itemIndex, IN DWORD itemId);
+	void virtual packetization_RemoteItemDestruction(IN PTCHAR itemName);
 	//乾坤袋
-	void virtual bagOfHolding(IN DWORD itemIndex);
+	void virtual bagOfHolding(IN PTCHAR itemName);
 	//组包乾坤袋
-	void virtual packetization_BagOfHolding(IN DWORD itemIndex);
+	void virtual packetization_BagOfHolding(IN PTCHAR itemName);
 	//背包物品到仓库 
-	void virtual backPackToWarehouse(IN QWORD unknownObject, IN QWORD rdx , IN QWORD targetWarehouseIndex, IN QWORD soureBackPackIndex);
+	void virtual backPackToWarehouse(IN PTCHAR itemName);
 	//组包背包物品到仓库
-	void virtual packetization_BackPackToWarehouse(IN DWORD targetWarehouseIndex, IN DWORD soureBackPackIndex);
+	void virtual packetization_BackPackToWarehouse(IN PTCHAR itemName);
 	//仓库物品到背包
-	void virtual warehouseToBackPack(IN QWORD unknownObject, IN QWORD rdx , IN QWORD soureWarehouseIndex, IN QWORD targetBackPackIndex);
+	void virtual warehouseToBackPack(IN PTCHAR itemName);
 	//组包仓库物品到背包
-	void virtual packetization_WarehouseToBackPack(IN DWORD soureWarehouseIndex, IN DWORD targetBackPackIndex);
+	void virtual packetization_WarehouseToBackPack(IN PTCHAR itemName);
 	//打开仓库Call
-	void virtual openWarehouseCall(IN QWORD unknownGlobalVariable,IN QWORD rdx);
+	void virtual openWarehouseCall();
 	//组包打开仓库Call
 	void virtual packetization_OpenWarehouseCall();
 	//关闭仓库Call
-	QWORD virtual closeWarehouseCall(IN QWORD unknownObject);
+	QWORD virtual closeWarehouseCall();
 	//组包关闭仓库Call
 	void virtual packetization_CloseWarehouseCall();
 	//打开仓库老板金玲音对话界面的Call
-	QWORD virtual open仓库老板金玲音对话界面Call(IN QWORD unknownObjectOne, IN QWORD unknownObjectTwo);
+	QWORD virtual open仓库老板金玲音对话界面Call();
     //关闭仓库老板金玲音对话界面的Call
 	void virtual Close仓库老板金玲音对话界面Call();
 	//屏蔽环境Call
@@ -59,9 +59,9 @@ public:
 	//获取选中的角色对象id
 	DWORD virtual getSelectCharacterObjectOfId();
 	//自我施法
-	DWORD virtual selfCasting(IN QWORD skillId);
+	QWORD virtual selfCasting(IN QWORD skillId);
 	//施法: pInGameCharacterObject(指向游戏内角色对象id的指针)
-	DWORD virtual casting(IN QWORD skillId, IN PQWORD pInGameCharacterObject);
+	QWORD virtual casting(IN QWORD skillId, IN PQWORD pInGameCharacterObject);
 	
 };
 

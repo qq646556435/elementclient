@@ -112,11 +112,9 @@ void MyDialog::OnBnClickedButtonuseitem()
 
 	CString itemName;
 	this->idc_Edit_Logging.GetWindowTextW(itemName);
-	DataStruct::data_Item item = rpObject.BackPack::getItemData((wchar_t*)itemName.GetString());
-	QWORD rax = rpObject.useItem(bAObject.获取本人对象(), 0, item.index, 1);
-	CString retn;
-	retn.Format(L"Rax==%llx", rax);
-	this->MessageBox(retn.GetString());
+   DataStruct::data_Item item = rpObject.BackPack::getItemData((wchar_t*)itemName.GetString());
+	QWORD rax = rpObject.useItem(item.index);
+	
 	
 }
 
@@ -141,29 +139,23 @@ void MyDialog::OnBnClickedButtonShowbaseaddress()
 //打坐Call
 void MyDialog::OnBnClickedButtonMeditation()
 {
-	QWORD rax = rpObject.meditation();
-	CString retn;
-	retn.Format(L"Rax==%llx", rax);
-	this->MessageBox(retn.GetString());
+	rpObject.meditation();
+	
 	
 }
 
 //取消打坐Call
 void MyDialog::OnBnClickedButtonCancelMeditation()
 {
-	QWORD rax = rpObject.cancelMeditation();
-	CString retn;
-	retn.Format(L"Rax==%llx", rax);
-	this->MessageBox(retn.GetString());
+	rpObject.cancelMeditation();
+	
 }
 
 //整理背包Call
 void MyDialog::OnBnClickedButtonOrganizeBackpack()
 {
-	QWORD rax = rpObject.organizeBackpack(0);
-	CString retn;
-	retn.Format(L"Rax==%llx", rax);
-	this->MessageBox(retn.GetString());
+	rpObject.organizeBackpack();
+	
 	
 }
 
@@ -172,8 +164,7 @@ void MyDialog::OnBnClickedButtonRemoteItemDestruction()
 {
 	CString itemName;
 	this->idc_Edit_Logging.GetWindowTextW(itemName);
-	DataStruct::data_Item itemData = rpObject.BackPack::getItemData((wchar_t*)(itemName.GetString()));
-	rpObject.packetization_RemoteItemDestruction(itemData.index, itemData.id);
+	rpObject.remoteItemDestruction((PTCHAR)itemName.GetString());
 	
 }
 
@@ -182,8 +173,8 @@ void MyDialog::OnBnClickedButtonBagOfHolding()
 {
 	CString itemName;
 	this->idc_Edit_Logging.GetWindowTextW(itemName);
-	DataStruct::data_Item itemData = rpObject.BackPack::getItemData((wchar_t*)(itemName.GetString()));
-	rpObject.packetization_BagOfHolding(itemData.index);
+	
+	rpObject.bagOfHolding((PTCHAR)itemName.GetString());
 }
 
 
@@ -197,22 +188,23 @@ void MyDialog::OnBnClickedButtonTraversalWarehouse()
 
 void MyDialog::OnBnClickedButtonStorageWarehouse()
 {
-	rpObject.packetization_BackPackToWarehouse(3, 1);
+	CString itemName;
+	this->idc_Edit_Logging.GetWindowTextW(itemName);
+	rpObject.backPackToWarehouse((PTCHAR)itemName.GetString());
 }
 
 
 void MyDialog::OnBnClickedButtonRetrieveFromTheWarehouse()
 {
-	rpObject.packetization_WarehouseToBackPack(3, 1);
+	CString itemName;
+	this->idc_Edit_Logging.GetWindowTextW(itemName);
+	rpObject.warehouseToBackPack((PTCHAR)itemName.GetString());
 }
 
 
 void MyDialog::OnBnClickedButtonOpenWarehouse()
 {
-	
-	/*rpObject.packetization_OpenWarehouseCall();*/
-	QWORD rcx = bAObject.getOpenWarehouseCall();
-	rpObject.openWarehouseCall(rcx, 0x0);
+	rpObject.openWarehouseCall();
 }
 
 
@@ -225,10 +217,7 @@ void MyDialog::OnBnClickedButtonCloseWarehouse()
 
 void MyDialog::OnBnClickedButton6()
 {
-	/*
-	rcx = [[[[[[0x0000000141561F00]+0x38]+0x60]+0x3520]+0x68]+2*8]
-    rdx = [[[[[[0x0000000141561F00]+0x38]+0x10]+0x50]+0x98]+4e*8]
-	*/
+	rpObject.open仓库老板金玲音对话界面Call();
 	
 }
 

@@ -3,7 +3,7 @@
 #pragma once
 #include "../../pch.h"
 #include "../../Tools/DataStruct/DataStruct.h"
-
+#define NO_EMPTY_INVENTORY_SLOT -1; //背包没有存储位置
 
 //背包类
 class BackPack
@@ -26,6 +26,8 @@ public:
 	DataStruct::data_Item virtual getItemData(IN wchar_t* itemName);
 	//遍历背包物品数据
 	CString virtual TraversalBackPackItemData();
+	//获取背包空白下标
+	DWORD virtual retrieveEmptyBackpackIndex();
 };
 
 

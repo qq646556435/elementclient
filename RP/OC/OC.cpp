@@ -17,7 +17,7 @@ bool OC::init()
 {
 	
 	this->角色信息.本人名称 = (wchar_t*)(*((QWORD*)(bAObject.获取本人对象() + 0x1218)));
-	this->角色信息.id = *((PDWORD)(*((PQWORD)(bAObject.获取本人对象() + 0x10)) + 0x1c4));
+	this->角色信息.id =      *((PDWORD)(bAObject.获取本人对象() + 0x540));
 	this->角色信息.当前血量 = *((QWORD*)(bAObject.获取本人对象() + 0x558));
 	this->角色信息.最大血量 = *((QWORD*)(bAObject.获取本人对象() + 0x588));
 	this->角色信息.当前蓝量 = *((QWORD*)(bAObject.获取本人对象() + 0x560));

@@ -21,6 +21,7 @@ typedef  QWORD(FASTCALL* Function_SpellcastingCall)(QWORD, QWORD, QWORD, QWORD, 
 
 extern   BaseAddress bAObject;
 
+
 Action::Action()
 {
 
@@ -30,10 +31,11 @@ Action::~Action()
 {
 }
 
-QWORD Action:: useItem(IN QWORD 本人对象, IN QWORD rdx, IN QWORD 下标, IN QWORD r9)
+QWORD Action:: useItem(IN QWORD 下标)
 {
+	
 	Function_useItemCall call = (Function_useItemCall)(bAObject.使用物品call());
-	QWORD rax = call(本人对象, rdx, 下标, r9);
+	QWORD rax = call(bAObject.获取本人对象(), 0, 下标, 1);
 
 	return rax;
 }
@@ -54,85 +56,61 @@ QWORD Action::cancelMeditation()
 	return rax;
 }
 
-QWORD Action::organizeBackpack(IN QWORD rcx)
+QWORD Action::organizeBackpack()
 {
 	Function_organizeBackpackCall call = (Function_organizeBackpackCall)(bAObject.整理装备call());
-	QWORD rax = call(rcx);
+	QWORD rax = call(0);
 
 	return rax;
 }
 
-void Action::remoteItemDestruction(IN QWORD itemIndex, IN QWORD itemId)
+void Action::remoteItemDestruction(IN PTCHAR itemName)
 {   
-	Function_remoteItemDestructionCall call = (Function_remoteItemDestructionCall)bAObject.getRemoteItemDestructionCall();
-	call(itemIndex, itemId);
+	
 }
 
-void Action::packetization_RemoteItemDestruction(IN DWORD itemIndex, IN DWORD itemId)
+void Action::packetization_RemoteItemDestruction(IN PTCHAR itemName)
 {
-	//组包数据缓冲区
-	BYTE packetizationBuffer[10] = { 0x20,0x02,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00 };
-	*((DWORD*)(&packetizationBuffer[2])) = itemIndex;
-	*((DWORD*)(&packetizationBuffer[6])) = itemId;
-	//组包Call
-	Function_packetizationCall Call = (Function_packetizationCall)(bAObject.getPacketizationCall());
-	QWORD rcx = *((QWORD*)(bAObject.获取未知对象() + 0x40));
-	Call(rcx, (QWORD)packetizationBuffer, 0x0A);
+
 }
 
-void Action::bagOfHolding(IN DWORD itemIndex)
+void Action::bagOfHolding(IN PTCHAR itemName)
 {
-	function_BagOfHoldingCall Call = (function_BagOfHoldingCall)bAObject.getBagOfHoldingCall();
-	Call(itemIndex);
+	
 }
 
-void Action::packetization_BagOfHolding(IN DWORD itemIndex)
+void Action::packetization_BagOfHolding(IN PTCHAR itemName)
 {
-	//组包数据缓冲区
-	BYTE packetizationBuffer[6] = {0xDB,0x01,0x00,0x00,0x00,0x00};
-	*((DWORD*)(&packetizationBuffer[2])) = itemIndex;
-	//组包Call
-	Function_packetizationCall Call = (Function_packetizationCall)(bAObject.getPacketizationCall());
-	QWORD rcx = *((QWORD*)(bAObject.获取未知对象() + 0x40));
-	Call(rcx, (QWORD)packetizationBuffer, 0x06);
+	
 }
 
-void Action::backPackToWarehouse(IN QWORD unknownObject, IN QWORD rdx=0, IN QWORD targetWarehouseIndex=0, IN QWORD soureBackPackIndex=0)
+void Action::backPackToWarehouse(IN PTCHAR itemName)
 {
-	function_WarehouseCall Call = (function_WarehouseCall)(bAObject.getWarehouseCall());
-	Call(unknownObject, rdx, targetWarehouseIndex, soureBackPackIndex);
+	
 }
 
-void Action::packetization_BackPackToWarehouse(IN DWORD targetWarehouseIndex, IN DWORD soureBackPackIndex)
+void Action::packetization_BackPackToWarehouse(IN PTCHAR itemName)
 {
-	Function_packetizationCall Call = (Function_packetizationCall)(bAObject.getPacketizationCall());
-	QWORD rcx = *((QWORD*)(bAObject.获取未知对象() + 0x40));
-	BYTE packetizationBuffer[10] = { 0x3A ,0x00 ,0x00 ,0x00 ,0x00 ,0x00 ,0x00,0x00 ,0x00 ,0x00 };
-	*((DWORD*)(&packetizationBuffer[2])) = targetWarehouseIndex;
-	*((DWORD*)(&packetizationBuffer[6])) = soureBackPackIndex;
-	Call(rcx, (QWORD)packetizationBuffer, 0x0A);
+	
 }
 
-void Action::warehouseToBackPack(IN QWORD unknownObject, IN QWORD rdx=0, IN QWORD soureWarehouseIndex=0, IN QWORD targetBackPackIndex=0)
+void Action::warehouseToBackPack(IN PTCHAR itemName)
 {
-	function_WarehouseCall Call = (function_WarehouseCall)(bAObject.getWarehouseCall());
-	Call(unknownObject, rdx, soureWarehouseIndex, targetBackPackIndex);
+	
 }
 
-void Action::packetization_WarehouseToBackPack(IN DWORD soureWarehouseIndex, IN DWORD targetBackPackIndex)
+void Action::packetization_WarehouseToBackPack(IN PTCHAR itemName)
 {
-	Function_packetizationCall Call = (Function_packetizationCall)(bAObject.getPacketizationCall());
-	QWORD rcx = *((QWORD*)(bAObject.获取未知对象() + 0x40));
-	BYTE packetizationBuffer[10] = { 0x3A ,0x00 ,0x00 ,0x00 ,0x00 ,0x00 ,0x00,0x00 ,0x00 ,0x00 };
-	*((DWORD*)(&packetizationBuffer[2])) = soureWarehouseIndex;
-	*((DWORD*)(&packetizationBuffer[6])) = targetBackPackIndex;
-	Call(rcx, (QWORD)packetizationBuffer, 0x0A);
+	
 }
 
-void Action::openWarehouseCall(IN QWORD unknownGlobalVariable, IN QWORD rdx)
+void Action::openWarehouseCall()
 {
+	QWORD unknownGlobalVariable = bAObject.getUnknownGlobalVariable();
+	QWORD rdx = 0x0;
 	function_OpenWarehouseCall Call = (function_OpenWarehouseCall)(bAObject.getOpenWarehouseCall());
-	Call(unknownGlobalVariable,rdx);
+
+	Call(unknownGlobalVariable, rdx);
 }
 
 void Action::packetization_OpenWarehouseCall()
@@ -145,11 +123,12 @@ void Action::packetization_OpenWarehouseCall()
 	
 }
 
-QWORD Action::closeWarehouseCall(IN QWORD unknownObject)
+QWORD Action::closeWarehouseCall()
 {
+	QWORD rcx = *((QWORD*)(bAObject.获取未知对象() + 0x40));
 
 	Function_CloseWarehouseCall Call = (Function_CloseWarehouseCall)(bAObject.getCloseWarehouseCall());
-	QWORD rax = Call(unknownObject);
+	QWORD rax = Call(rcx);
 	return rax;
 }
 
@@ -162,13 +141,16 @@ void Action::packetization_CloseWarehouseCall()
 	Call(rcx, (QWORD)packetizationBuffer, r8);
 }
 
-QWORD Action::open仓库老板金玲音对话界面Call(IN QWORD unknownObjectOne, IN QWORD unknownObjectTwo)
+QWORD Action::open仓库老板金玲音对话界面Call()
 {
+	QWORD unknownObjectOne = *((PQWORD)(*((PQWORD)(*((PQWORD)(bAObject.获取本人对象() + bAObject.get3520OffsetValue()))+0x68))+(2*8)));
+	QWORD unknownObjectTwo = *((PQWORD)(*((PQWORD)(*((PQWORD)(*((PQWORD)(*((PQWORD)(bAObject.获取未知对象() + 0x38))+0x10))+0x50))+0x98))+(0x4e*8)));
+	Function_Open仓库老板金玲音对话界面Call call = (Function_Open仓库老板金玲音对话界面Call)bAObject.getOpen仓库老板金玲音的对话界面Call();
 	
-	return 0;
+	QWORD rax= call(unknownObjectOne, unknownObjectTwo);
+
+	return rax;
 }
-
-
 
 void Action::Close仓库老板金玲音对话界面Call()
 {
@@ -254,13 +236,13 @@ DWORD Action::getSelectCharacterObjectOfId()
 	return id;
 }
 
-DWORD Action::selfCasting(IN QWORD skillId)
+QWORD Action::selfCasting(IN QWORD skillId)
 {
 
 	return true;
 }
 
-DWORD Action::casting(IN QWORD skillId, IN PQWORD pInGameCharacterObject)
+QWORD Action::casting(IN QWORD skillId, IN PQWORD pInGameCharacterObject)
 {
 	QWORD mSkillId = skillId;
 	QWORD rdx = 0x80;

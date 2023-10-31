@@ -260,6 +260,28 @@ CString BackPack::TraversalBackPackItemData()
 	return cstr;
 }
 
+DWORD BackPack::retrieveEmptyBackpackIndex()
+{
+	//背包最大容量
+	DWORD maxCap = *((QWORD*)(this->backPackOBject + 0x20));
+	//物品对象数组首地址
+	QWORD itmeObjectArrayFA = *((QWORD*)(this->backPackOBject + 0x18));
+	//开始遍历对象数组
+	for (int i = 0; i < maxCap; ++i)
+	{
+		//当前物品对象
+		QWORD currentItemOject = *((QWORD*)(itmeObjectArrayFA + (i * 8)));
+		if (!currentItemOject)
+		{
+			return i;
+
+		}
+	
+	}
+
+	return NO_EMPTY_INVENTORY_SLOT;
+}
+
 				/*
 				item.id = *((DWORD*)(currentItemOject + 0xc));
 				item.cic = *((DWORD*)(currentItemOject + 0x18));

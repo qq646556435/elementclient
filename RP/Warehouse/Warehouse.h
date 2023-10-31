@@ -9,5 +9,6 @@ class Warehouse:public BackPack
 public:
 	//初始化数据
 	void virtual init();
+	
 };
 #endif//__WAREHOUSE__H_40FD343F_FC0D_CFE3_503B_7BD24D13DDAD
