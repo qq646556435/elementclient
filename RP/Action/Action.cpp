@@ -1,7 +1,7 @@
 #include "../../pch.h"
 #include "Action.h"
 #include "../../Tools/BaseAddress/BaseAddress.h"
-#include <iostream>
+
 typedef  QWORD(FASTCALL* Function_useItemCall)(QWORD, QWORD, QWORD, QWORD);
 typedef  QWORD(FASTCALL* Function_meditationCall)();
 typedef  QWORD(FASTCALL* Function_cancelMeditationCall)();
@@ -18,6 +18,11 @@ typedef  QWORD(FASTCALL* Function_UnityOfHeavenAndHumanityCall)(QWORD, QWORD, QW
 typedef  QWORD(FASTCALL* Function_RespawnCall)(QWORD, PTCHAR);
 typedef  QWORD(FASTCALL* Function_ChangeServerCall)(QWORD, QWORD);
 typedef  QWORD(FASTCALL* Function_SpellcastingCall)(QWORD, QWORD, QWORD, QWORD, QWORD);
+typedef  QWORD(FASTCALL* Function_ActionDisruptionCall)(QWORD);
+typedef  QWORD(FASTCALL* Function_PathfindingCall)(QWORD, PQWORD, PQWORD, QWORD, byte);
+typedef  QWORD(FASTCALL* Function_NacigateCall_1)(QWORD, DWORD);
+typedef  void (FASTCALL* Function_NacigateCall_2)(QWORD, DWORD, PQWORD);
+typedef  QWORD (FASTCALL* Function_NacigateCall_3)(QWORD, DWORD, QWORD,DWORD,BYTE);
 
 extern   BaseAddress bAObject;
 
@@ -251,6 +256,99 @@ QWORD Action::casting(IN QWORD skillId, IN PQWORD pInGameCharacterObject)
 	QWORD rsp_0x20 = 0x0;
 	Function_SpellcastingCall call = (Function_SpellcastingCall)bAObject.getCastSkillCall();
 	QWORD rax = call(mSkillId, rdx, r8, r9, rsp_0x20);
+	return rax;
+}
+
+QWORD Action::actionDisruption()
+{  
+   QWORD playerCharacterObject = bAObject.获取本人对象(); //本人玩家对象
+   Function_ActionDisruptionCall call = (Function_ActionDisruptionCall)bAObject.getActionDisruptionCall();//动作中断Call
+   QWORD rax = 0;//返回值
+   //调用动作中断Call
+   rax = call(playerCharacterObject);
+   //返回值返回
+   return rax;
+}
+
+void Action::packetization_ActionDisruption()
+{
+	QWORD unknownObject = *((QWORD*)(bAObject.获取未知对象() + 0x40));//未知对象
+	BYTE  packetizationBuffer[2] = { 0x2A,0x00 };//组包数据缓冲区
+	QWORD r8 = 0x02;//组包的包长
+	Function_packetizationCall Call = (Function_packetizationCall)(bAObject.getPacketizationCall());//组包Call
+	//调用组包Call
+	Call(unknownObject, (QWORD)packetizationBuffer, r8);
+}
+
+QWORD Action::pathfinding(IN DataStruct::data_Coordinates* targetCoordinates)
+{
+	/*
+	[[[[0x000000014156D1A0]+0x38]+0x10]+0x138]
+	mov byte[rsp+20],0x01
+	mov r9,所在地图的id
+	mov r8,目的坐标
+	mov rdx,当前坐标
+	mov rcx,未知的结构体类型的全局变量
+	Call 寻路Call
+	mov rax,rax
+	unknownglobal variable
+	Current Coordinates
+	*/
+	QWORD unknownGlobalVariable = bAObject.getPathfindingCall_Rcx();//未知的结构体类型的全局变量
+	PQWORD pCurrentCoordinates = (PQWORD)(bAObject.获取本人对象() + 0x1370);//指向当前坐标的指针
+	PQWORD pTargetCoordinates = (PQWORD)targetCoordinates;//指向目的坐标的指针
+	QWORD  currentMapId = *((PQWORD)(*((PQWORD)(*((PQWORD)(bAObject.获取未知对象() + 0x38))+0x10))+0x138));//当前地图的id
+	byte   rsp_20 = 0x01;//默认参数0x01
+	Function_PathfindingCall call = (Function_PathfindingCall)bAObject.getPathfindingCall();//寻路Call
+	QWORD rax = 0;
+	//调用寻路Call
+	rax = call(unknownGlobalVariable, pCurrentCoordinates, pTargetCoordinates, currentMapId, rsp_20);
+	
+	//返回值
+	return rax;
+
+}
+
+QWORD Action::navigate(IN DataStruct::data_Coordinates* targetCoordinates)
+{
+	/*
+	 mov edx,0x1
+	mov rcx,[本人对象+3520]
+	Call 走路Call_1
+	mov rbx,rax
+	mov r8 ,目的坐标
+	mov edx,0x0
+	mov rcx,rax
+	Call 走路Call_2
+	mov byte ptr ss:[rsp+0x20],0x0
+	mov r9d,0x1
+	mov r8,rbx
+	mov edx,0x01
+	mov rcx,[本人对象+3520]
+	Call 走路Call_3
+	mov rax,rax
+	
+	*/
+	Function_NacigateCall_1 navigateCall_1 = (Function_NacigateCall_1)bAObject.getNavigate_1();//走路Call_1
+	Function_NacigateCall_2 navigateCall_2 = (Function_NacigateCall_2)bAObject.getNavigate_2();//走路Call_2
+	Function_NacigateCall_3 navigateCall_3 = (Function_NacigateCall_3)bAObject.getNavigate_3();//走路Call_3
+	QWORD rcx = *((PQWORD)(bAObject.获取本人对象() + bAObject.get3520OffsetValue()));
+	DWORD edx = 0x01;
+	QWORD rax = 0;
+	rax = navigateCall_1(rcx, edx);
+
+	rcx = rax;
+	edx = 0x0;
+	PQWORD r8 = (PQWORD)targetCoordinates;
+	navigateCall_2(rcx, edx, r8);
+
+	rcx = *((PQWORD)(bAObject.获取本人对象() + bAObject.get3520OffsetValue()));
+	edx = 0x01;
+	QWORD r8_1 = rax;
+	DWORD r9 = 0x01;
+	BYTE rsp_20 = 0x0;
+	rax = navigateCall_3(rcx, edx, r8_1, r9, rsp_20);
+
 	return rax;
 }
 

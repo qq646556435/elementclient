@@ -51,6 +51,14 @@ namespace DataStruct
 		DWORD maximumCooldown;//最大冷却值
 		BYTE  cooldownFlag;//冷却标志
 	};
+	
+	//坐标
+	struct data_Coordinates
+	{
+		float x;
+		float z;
+		float y;
+	};
 
 }
 

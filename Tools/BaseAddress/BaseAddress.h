@@ -36,6 +36,12 @@ private:
 	QWORD jSkillsNumberOffsetValue;//技能总数偏移值
 	QWORD jSelectCharacterObjectOfIdOffsetValue;//选中角色对象的Id偏移值
 	QWORD jCastSkillCall;//释放技能Call
+	QWORD jActionDisruptionCall;//动作中断Call
+	QWORD jPathfindingCall;//寻路Call 
+	QWORD jPathfindingCall_Rcx;//寻路Call参数1_rcx未知的结构体类型的全局变量
+	QWORD jNavigateCall_1;//走路Call
+	QWORD jNavigateCall_2;
+	QWORD jNavigateCall_3;
 	
 public:
 	BaseAddress();
@@ -84,7 +90,19 @@ public:
 	QWORD getSelectCharacterObjectOfIdOffsetValue();
 	//获取释放技能Call
 	QWORD getCastSkillCall();
-	BaseAddress& operator=(IN UINT value);
+	//获取动作中断Call
+	QWORD getActionDisruptionCall(); 
+	//获取寻路Call
+	QWORD getPathfindingCall();
+	//获取寻路Call参数1_rcx未知的结构体类型的全局变量
+	QWORD getPathfindingCall_Rcx();
+	//获取走路Call_1
+	QWORD getNavigate_1();
+	//获取走路Call_2
+	QWORD getNavigate_2();
+	//获取走路Call_3
+	QWORD getNavigate_3();
+	 BaseAddress& operator=(IN UINT value);
 	CString getBaseAddressData();
 };
 

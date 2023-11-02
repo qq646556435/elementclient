@@ -1,6 +1,7 @@
 #ifndef __ACTION__H_7205A58E_B2CE_4438_8B38_55016F7E473B
 #define __ACTION__H_7205A58E_B2CE_4438_8B38_55016F7E473B
 #pragma once
+#include "../../Tools/DataStruct/DataStruct.h"
 class Action
 {
 public:
@@ -62,6 +63,22 @@ public:
 	QWORD virtual selfCasting(IN QWORD skillId);
 	//施法: pInGameCharacterObject(指向游戏内角色对象id的指针)
 	QWORD virtual casting(IN QWORD skillId, IN PQWORD pInGameCharacterObject);
+	//动作中断
+	QWORD virtual actionDisruption();
+	//组包动作中断
+	void virtual  packetization_ActionDisruption();
+	/*
+	  寻路Call:
+	  参数1:(in) 目的坐标
+      返回值: ture或者false	
+	*/
+	QWORD virtual pathfinding(IN DataStruct::data_Coordinates* targetCoordinates);
+	/*
+	  走路Call:
+	  参数1:(in) 目的坐标
+	  返回值: false Navigate
+	*/
+	QWORD virtual navigate(IN DataStruct::data_Coordinates* targetCoordinates);
 	
 };
 

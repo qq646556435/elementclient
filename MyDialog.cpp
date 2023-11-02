@@ -98,6 +98,9 @@ BEGIN_MESSAGE_MAP(MyDialog, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTON9, &MyDialog::OnBnClickedButton9)
 	ON_BN_CLICKED(IDC_BUTTON10, &MyDialog::OnBnClickedButton10)
 	ON_BN_CLICKED(IDC_BUTTON11, &MyDialog::OnBnClickedButton11)
+	ON_BN_CLICKED(IDC_BUTTON12, &MyDialog::OnBnClickedButton12)
+	ON_BN_CLICKED(IDC_BUTTON13, &MyDialog::OnBnClickedButton13)
+	ON_BN_CLICKED(IDC_BUTTON14, &MyDialog::OnBnClickedButton14)
 END_MESSAGE_MAP()
 
 
@@ -288,4 +291,30 @@ void MyDialog::OnBnClickedButton11()
 {
 	QWORD InGameCharacterObject = 0x0034A344;
 	rpObject.casting(0x932, &InGameCharacterObject);
+}
+
+
+void MyDialog::OnBnClickedButton12()
+{
+	rpObject.actionDisruption();
+}
+
+
+void MyDialog::OnBnClickedButton13()
+{
+	DataStruct::data_Coordinates coordinates = { 0 };
+	coordinates.x = 161;
+	coordinates.z = 0;
+	coordinates.y = 130;
+	rpObject.pathfinding(&coordinates);
+}
+
+
+void MyDialog::OnBnClickedButton14()
+{
+	DataStruct::data_Coordinates coordinates = { 0 };
+	coordinates.x = 161;
+	coordinates.z = 0;
+	coordinates.y = 130;
+	rpObject.navigate(&coordinates);
 }
