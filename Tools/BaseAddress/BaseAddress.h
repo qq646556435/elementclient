@@ -41,7 +41,8 @@ private:
 	QWORD jPathfindingCall_Rcx;//寻路Call参数1_rcx未知的结构体类型的全局变量
 	QWORD jNavigateCall_1;//走路Call
 	QWORD jNavigateCall_2;
-	QWORD jNavigateCall_3;
+	QWORD jNavigateCall_3; 
+	QWORD jSelectNpcCall;//选中NpcCall
 	
 public:
 	BaseAddress();
@@ -102,6 +103,8 @@ public:
 	QWORD getNavigate_2();
 	//获取走路Call_3
 	QWORD getNavigate_3();
+	//获取选中NpcCall
+	QWORD getSelectNpcCall();
 	 BaseAddress& operator=(IN UINT value);
 	CString getBaseAddressData();
 };

@@ -69,6 +69,7 @@ void MyDialog::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_EDIT_ENERGY, idc_Edit_energy);
 	DDX_Control(pDX, IDC_EDIT_XY, idc_Edit_XY);
 	DDX_Control(pDX, IDC_EDIT_LOGGING, idc_Edit_Logging);
+	DDX_Control(pDX, IDC_EDIT_SELECT_NPC, idc_Edit_SelectNpc);
 }
 
 
@@ -101,6 +102,8 @@ BEGIN_MESSAGE_MAP(MyDialog, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTON12, &MyDialog::OnBnClickedButton12)
 	ON_BN_CLICKED(IDC_BUTTON13, &MyDialog::OnBnClickedButton13)
 	ON_BN_CLICKED(IDC_BUTTON14, &MyDialog::OnBnClickedButton14)
+	ON_BN_CLICKED(IDC_BUTTON15, &MyDialog::OnBnClickedButton15)
+	ON_BN_CLICKED(IDC_BUTTON16, &MyDialog::OnBnClickedButton16)
 END_MESSAGE_MAP()
 
 
@@ -317,4 +320,26 @@ void MyDialog::OnBnClickedButton14()
 	coordinates.z = 0;
 	coordinates.y = 130;
 	rpObject.navigate(&coordinates);
+}
+
+
+void MyDialog::OnBnClickedButton15()
+{
+	std::vector<CString> cNpc;//任务Npc和怪物npc的属性信息
+	CString ccNpc;
+   	cNpc = rpObject.iterateThroughQuestNpcsAndMonster();
+	std::vector<CString>::iterator it;
+	for (it = cNpc.begin(); it != cNpc.end(); ++it)
+	{
+		ccNpc.AppendFormat((*it).GetString());
+		
+	}
+	this->idc_Edit_Logging.SetWindowTextW(ccNpc.GetString());
+}
+
+
+void MyDialog::OnBnClickedButton16()
+{
+	
+	rpObject.selectNpcCall(0x80005f16);
 }

@@ -49,6 +49,9 @@
     <Filter Include="RP\Skills">
       <UniqueIdentifier>{eff8e783-4a1d-4a5c-b07e-99184790acfb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="RP\Player%27sSurroundings">
+      <UniqueIdentifier>{aa413026-9e5c-4414-835f-738cf1257409}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="elementclient.cpp">
@@ -89,6 +92,9 @@
     </ClCompile>
     <ClCompile Include="RP\Skills\Skills.cpp">
       <Filter>RP\Skills</Filter>
+    </ClCompile>
+    <ClCompile Include="RP\Player%27sSurroundings\PlayersSurroundings.cpp">
+      <Filter>RP\Player%27sSurroundings</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -150,6 +156,9 @@
     </ClInclude>
     <ClInclude Include="RP\Skills\Skills.h">
       <Filter>RP\Skills</Filter>
+    </ClInclude>
+    <ClInclude Include="RP\Player%27sSurroundings\PlayersSurroundings.h">
+      <Filter>RP\Player%27sSurroundings</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

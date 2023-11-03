@@ -206,6 +206,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="RP\Player%27sSurroundings\PlayersSurroundings.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="RP\RP.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
@@ -247,6 +250,7 @@
     <ClInclude Include="RP\Action\Action.h" />
     <ClInclude Include="RP\BackPack\BackPack.h" />
     <ClInclude Include="RP\OC\OC.h" />
+    <ClInclude Include="RP\Player%27sSurroundings\PlayersSurroundings.h" />
     <ClInclude Include="RP\RP.h" />
     <ClInclude Include="RP\Skills\Skills.h" />
     <ClInclude Include="RP\Warehouse\Warehouse.h" />

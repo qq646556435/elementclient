@@ -76,10 +76,15 @@ public:
 	/*
 	  走路Call:
 	  参数1:(in) 目的坐标
-	  返回值: false Navigate
+	  返回值: ture或者false
 	*/
 	QWORD virtual navigate(IN DataStruct::data_Coordinates* targetCoordinates);
-	
+	/*
+	  选中NpcCall
+	  参数1:(in) Npc对象的id
+	  返回值: ture或者false
+	*/
+	QWORD virtual selectNpcCall(IN DWORD npcObjectId);
 };
 
 #endif //__ACTION__H_7205A58E_B2CE_4438_8B38_55016F7E473B

@@ -22,7 +22,8 @@ typedef  QWORD(FASTCALL* Function_ActionDisruptionCall)(QWORD);
 typedef  QWORD(FASTCALL* Function_PathfindingCall)(QWORD, PQWORD, PQWORD, QWORD, byte);
 typedef  QWORD(FASTCALL* Function_NacigateCall_1)(QWORD, DWORD);
 typedef  void (FASTCALL* Function_NacigateCall_2)(QWORD, DWORD, PQWORD);
-typedef  QWORD (FASTCALL* Function_NacigateCall_3)(QWORD, DWORD, QWORD,DWORD,BYTE);
+typedef  QWORD(FASTCALL* Function_NacigateCall_3)(QWORD, DWORD, QWORD,DWORD,BYTE);
+typedef  QWORD(FASTCALL* Function_SelectNpcCall)(DWORD);
 
 extern   BaseAddress bAObject;
 
@@ -349,6 +350,16 @@ QWORD Action::navigate(IN DataStruct::data_Coordinates* targetCoordinates)
 	BYTE rsp_20 = 0x0;
 	rax = navigateCall_3(rcx, edx, r8_1, r9, rsp_20);
 
+	return rax;
+}
+
+QWORD Action::selectNpcCall(IN DWORD npcObjectId)
+{
+	DWORD rcx = npcObjectId;//npc对象的id
+	Function_SelectNpcCall call = (Function_SelectNpcCall)bAObject.getSelectNpcCall();//选中NpcCall
+	//调用选中NpcCall
+	DWORD rax = call(rcx);
+	//返回值
 	return rax;
 }
 

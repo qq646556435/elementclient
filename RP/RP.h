@@ -7,8 +7,9 @@
 #include "../RP/Action/Action.h"
 #include "../RP/Warehouse/Warehouse.h"
 #include "../RP/Skills/Skills.h"
+#include "../RP/Player'sSurroundings/PlayersSurroundings.h"
 //±¾ÈËÍæ¼Ò
-class RP:public OC , public BackPack, public Action,public Warehouse,public Skills
+class RP:public OC , public BackPack, public Action,public Warehouse,public Skills,public PlayersSurroundings
 {
 public:
 	RP();

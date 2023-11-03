@@ -59,7 +59,19 @@ namespace DataStruct
 		float z;
 		float y;
 	};
-
+	
+	//Npc对象的属性信息
+	struct data_Npc
+	{
+		PTCHAR Name;//npc的名称
+		DWORD id;//npc的id  
+		PTCHAR nType; //npc的类型
+		DWORD hp;//npc血量
+		DWORD maxHp; //npc最大血量
+		data_Coordinates coordinates;//npc的坐标
+		float horizontalDistance;//水平距离
+		float verticalDistance;//高度距离
+	};
 }
 
 #endif
