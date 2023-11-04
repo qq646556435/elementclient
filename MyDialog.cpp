@@ -340,6 +340,8 @@ void MyDialog::OnBnClickedButton15()
 
 void MyDialog::OnBnClickedButton16()
 {
-	
-	rpObject.selectNpcCall(0x80005f16);
+	CString cNpcId;
+	this->idc_Edit_SelectNpc.GetWindowTextW(cNpcId);
+	DWORD npcId = _tcstoul(cNpcId.GetString(), NULL, 16);
+	rpObject.selectNpcCall(npcId);
 }
