@@ -41,8 +41,7 @@ namespace DataStruct
 		float x坐标;
 		float y坐标;
 	};
-
-	//本人玩家的技能属性信息
+    //本人玩家的技能属性信息
 	struct data_Skills
 	{
 		PTCHAR skillsName;//技能名称
@@ -51,7 +50,6 @@ namespace DataStruct
 		DWORD maximumCooldown;//最大冷却值
 		BYTE  cooldownFlag;//冷却标志
 	};
-	
 	//坐标
 	struct data_Coordinates
 	{
@@ -59,7 +57,6 @@ namespace DataStruct
 		float z;
 		float y;
 	};
-	
 	//Npc对象的属性信息
 	struct data_Npc
 	{

@@ -7,13 +7,16 @@
 class FMC
 {
 private:
+
 	HANDLE 进程句柄;
 	QWORD 起始地址;
 	QWORD 结束地址;
 private:
+
 	QWORD 获取模块内存区域(IN QWORD pid, IN std::wstring 模块名称);
 
 public:
+
 	FMC();
 	FMC(IN QWORD pid, IN std::wstring 模块名称);
 	virtual ~FMC();

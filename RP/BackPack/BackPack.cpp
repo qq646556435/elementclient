@@ -39,18 +39,13 @@ void BackPack::memoryReadInDataTOItemStruct(IN QWORD currentItemOject, IN wchar_
 	item.cmic = *((DWORD*)(currentItemOject + 0x1c));
 	item.index = index;
 }
-
 BackPack::BackPack() :backPackOBject(0)
 {
 }
-
 void BackPack::init()
 {
 	this->backPackOBject = *((QWORD*)(bAObject.获取本人对象() + bAObject.背包对象的偏移()));
 }
-
-
-
 DataStruct::data_Item BackPack::getItemData(IN wchar_t* itemName)
 {
 	//背包最大容量
@@ -146,7 +141,6 @@ DataStruct::data_Item BackPack::getItemData(IN wchar_t* itemName)
 	}
 	return item;
 }
-
 CString BackPack::TraversalBackPackItemData()
 {
 	//背包最大容量
@@ -259,7 +253,6 @@ CString BackPack::TraversalBackPackItemData()
 	
 	return cstr;
 }
-
 DWORD BackPack::retrieveEmptyBackpackIndex()
 {
 	//背包最大容量

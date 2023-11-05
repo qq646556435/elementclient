@@ -8,11 +8,9 @@ OC::OC()
 {
 
 }
-
 OC::~OC()
 {
 }
-
 bool OC::init()
 {
 	
@@ -27,7 +25,6 @@ bool OC::init()
 
 	return true;
 }
-
 DataStruct::data_OCInfo OC::获取角色信息()
 {
 

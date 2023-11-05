@@ -4,11 +4,9 @@ extern BaseAddress bAObject;
 Skills::Skills()
 {
 }
-
 Skills::~Skills()
 {
 }
-
 DataStruct::data_Skills Skills::getSkillsData(IN DWORD SkillsId)
 {
 	DataStruct::data_Skills skills = { 0 };

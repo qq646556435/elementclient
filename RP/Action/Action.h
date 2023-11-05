@@ -2,6 +2,29 @@
 #define __ACTION__H_7205A58E_B2CE_4438_8B38_55016F7E473B
 #pragma once
 #include "../../Tools/DataStruct/DataStruct.h"
+using  Function_useItemCall = QWORD(FASTCALL*)(QWORD, QWORD, QWORD, QWORD);
+using  Function_meditationCall = QWORD(FASTCALL*)();
+using  Function_cancelMeditationCall = QWORD(FASTCALL*)();
+using  Function_organizeBackpackCall = QWORD(FASTCALL*)(QWORD);
+using  Function_remoteItemDestructionCall = void (FASTCALL*)(QWORD, QWORD);
+using  Function_packetizationCall = void (FASTCALL*)(QWORD, QWORD, QWORD);
+using  function_BagOfHoldingCall = void(FASTCALL*)(QWORD);
+using  function_WarehouseCall = void(FASTCALL*)(QWORD, QWORD, QWORD, QWORD);
+using  function_OpenWarehouseCall = void(FASTCALL*)(QWORD, QWORD);
+using  Function_CloseWarehouseCall = QWORD(FASTCALL*)(QWORD);
+using  Function_Open仓库老板金玲音对话界面Call = QWORD(FASTCALL*)(QWORD, QWORD);
+using  Function_BlockOutTheEnvironmentCall = QWORD(FASTCALL*)(QWORD);
+using  Function_UnityOfHeavenAndHumanityCall = QWORD(FASTCALL*)(QWORD, QWORD, QWORD);
+using  Function_RespawnCall = QWORD(FASTCALL*)(QWORD, PTCHAR);
+using  Function_ChangeServerCall = QWORD(FASTCALL*)(QWORD, QWORD);
+using  Function_SpellcastingCall = QWORD(FASTCALL*)(QWORD, QWORD, QWORD, QWORD, QWORD);
+using  Function_ActionDisruptionCall = QWORD(FASTCALL*)(QWORD);
+using  Function_PathfindingCall = QWORD(FASTCALL*)(QWORD, PQWORD, PQWORD, QWORD, byte);
+using  Function_NacigateCall_1 = QWORD(FASTCALL*)(QWORD, DWORD);
+using  Function_NacigateCall_2 = void (FASTCALL*)(QWORD, DWORD, PQWORD);
+using  Function_NacigateCall_3 = QWORD(FASTCALL*)(QWORD, DWORD, QWORD, DWORD, BYTE);
+using  Function_SelectNpcCall = QWORD(FASTCALL*)(DWORD);
+
 class Action
 {
 public:

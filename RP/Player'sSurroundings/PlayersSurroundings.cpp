@@ -1,15 +1,32 @@
 #include "PlayersSurroundings.h"
 #include "../../Tools/BaseAddress/BaseAddress.h"
 #include "../../Tools/DataStruct/DataStruct.h"
+
+#define FORMAT_NPC_INFO(cNpc,npc, currentNpcObject,practiceNumber) \
+    cNpc.AppendFormat(L"——-%lld———\r\n", practiceNumber); \
+    cNpc.AppendFormat(L"npc对象: %llx\r\n", currentNpcObject); \
+    cNpc.AppendFormat(L"名称: %ws\r\n", npc.Name); \
+    cNpc.AppendFormat(L"id:  %lx\r\n", npc.id); \
+    cNpc.AppendFormat(L"hp:  %ld\r\n", npc.hp); \
+    cNpc.AppendFormat(L"maxHp:  %ld\r\n", npc.maxHp); \
+    cNpc.AppendFormat(L"类型: %ws\r\n", npc.nType); \
+    cNpc.AppendFormat(L"x:   %.3f\r\n", npc.coordinates.x); \
+    cNpc.AppendFormat(L"z:   %.3f\r\n", npc.coordinates.z); \
+    cNpc.AppendFormat(L"y:   %.3f\r\n", npc.coordinates.y); \
+    cNpc.AppendFormat(L"水平距离: %.3f\r\n", npc.horizontalDistance); \
+    cNpc.AppendFormat(L"高度距离: %.3f\r\n", npc.verticalDistance); \
+    cNpc.AppendFormat(L"\r\n");
+
+
 extern BaseAddress bAObject;
+
+
 PlayersSurroundings::PlayersSurroundings()
 {
 }
-
 PlayersSurroundings::~PlayersSurroundings()
 {
 }
-
 std::vector<CString> PlayersSurroundings::iterateThroughQuestNpcsAndMonster()
 {
 	//[[[[[[0x14156D1A0]+38]+10] +50]+00000098]+r8*8]+000003A8
@@ -58,19 +75,7 @@ std::vector<CString> PlayersSurroundings::iterateThroughQuestNpcsAndMonster()
 			{
 				npc.nType = L"怪物Npc";
 				//开始打印怪物npc的属性信息
-				monsterNpc.AppendFormat(L"——-%lld———\r\n", practiceNumber);
-				monsterNpc.AppendFormat(L"npc对象: %llx\r\n", currentNpcObject);
-				monsterNpc.AppendFormat(L"名称: %ws\r\n", npc.Name);
-				monsterNpc.AppendFormat(L"id:  %lx\r\n", npc.id);
-				monsterNpc.AppendFormat(L"hp:  %ld\r\n", npc.hp);
-				monsterNpc.AppendFormat(L"maxHp:  %ld\r\n", npc.maxHp);
-				monsterNpc.AppendFormat(L"类型: %ws\r\n", npc.nType);
-				monsterNpc.AppendFormat(L"x:   %3.f\r\n", npc.coordinates.x);
-				monsterNpc.AppendFormat(L"z:   %3.f\r\n", npc.coordinates.z);
-				monsterNpc.AppendFormat(L"y:   %3.f\r\n", npc.coordinates.y);
-				monsterNpc.AppendFormat(L"水平距离: %3.f\r\n", npc.horizontalDistance);
-				monsterNpc.AppendFormat(L"高度距离: %3.f\r\n", npc.verticalDistance);
-				monsterNpc.AppendFormat(L"\r\n");
+				FORMAT_NPC_INFO(monsterNpc, npc, currentNpcObject, practiceNumber);
 				//跳过本次循环
 				continue;
 				
@@ -79,39 +84,15 @@ std::vector<CString> PlayersSurroundings::iterateThroughQuestNpcsAndMonster()
 			{
 				npc.nType = L"任务Npc";
 				//开始打印任务npc的属性信息
-				questNpc.AppendFormat(L"——-%lld———\r\n", practiceNumber);
-				questNpc.AppendFormat(L"npc对象: %llx\r\n", currentNpcObject);
-				questNpc.AppendFormat(L"名称: %ws\r\n", npc.Name);
-				questNpc.AppendFormat(L"id:  %lx\r\n", npc.id);
-				questNpc.AppendFormat(L"hp:  %ld\r\n", npc.hp);
-				questNpc.AppendFormat(L"maxHp:  %ld\r\n", npc.maxHp);
-				questNpc.AppendFormat(L"类型: %ws\r\n", npc.nType);
-				questNpc.AppendFormat(L"x:   %3.f\r\n", npc.coordinates.x);
-				questNpc.AppendFormat(L"z:   %3.f\r\n", npc.coordinates.z);
-				questNpc.AppendFormat(L"y:   %3.f\r\n", npc.coordinates.y);
-				questNpc.AppendFormat(L"水平距离: %3.f\r\n", npc.horizontalDistance);
-				questNpc.AppendFormat(L"高度距离: %3.f\r\n", npc.verticalDistance);
-				questNpc.AppendFormat(L"\r\n");
+				FORMAT_NPC_INFO(questNpc, npc, currentNpcObject, practiceNumber);
 				//跳过本次循环
 				continue;
 			}
-			else
+			else  //如果是其他Npc
 			{
 				npc.nType = L"其他Npc";
 				//开始打印其他Npc的属性信息
-				otherNpc.AppendFormat(L"——-%lld———\r\n", practiceNumber);
-				otherNpc.AppendFormat(L"npc对象: %llx\r\n", currentNpcObject);
-				otherNpc.AppendFormat(L"名称: %ws\r\n", npc.Name);
-				otherNpc.AppendFormat(L"id:  %lx\r\n", npc.id);
-				otherNpc.AppendFormat(L"hp:  %ld\r\n", npc.hp);
-				otherNpc.AppendFormat(L"maxHp:  %ld\r\n", npc.maxHp);
-				otherNpc.AppendFormat(L"类型: %ws\r\n", npc.nType);
-				otherNpc.AppendFormat(L"x:   %3.f\r\n", npc.coordinates.x);
-				otherNpc.AppendFormat(L"z:   %3.f\r\n", npc.coordinates.z);
-				otherNpc.AppendFormat(L"y:   %3.f\r\n", npc.coordinates.y);
-				otherNpc.AppendFormat(L"水平距离: %3.f\r\n", npc.horizontalDistance);
-				otherNpc.AppendFormat(L"高度距离: %3.f\r\n", npc.verticalDistance);
-				otherNpc.AppendFormat(L"\r\n");
+				FORMAT_NPC_INFO(otherNpc, npc, currentNpcObject, practiceNumber);
 				//跳过本次循环
 				continue;
 			}

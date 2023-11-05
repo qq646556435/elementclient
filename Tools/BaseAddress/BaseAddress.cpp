@@ -32,14 +32,18 @@ BYTE jPathfindingCallFeatureCode[] = { 0x48, 0x89, 0x58, 0x10, 0x48, 0x89, 0x70,
 BYTE jPathfindingCall_RaxFeatureCode[] = { 0xF3, 0x0F, 0x10, 0x50, 0x50, 0xF3, 0x0F, 0x10, 0x48, 0x4C, 0xF3, 0x0F, 0x10, 0x40, 0x48, 0xF3,0x0F, 0x11, 0x45, 0x8F, 0xF3, 0x0F, 0x11, 0x4D, 0x93, 0xF3, 0x0F, 0x11, 0x55, 0x97, 0x44, 0x8B,0xCB, 0x4C, 0x8D, 0x44, 0x24, 0x58, 0x48, 0x8D, 0x55, 0x8F, 0xC6, 0x44, 0x24, 0x20, 0x01 }; //寻路Call参数1_rcx未知的结构体类型的全局变量的特征码
 BYTE jNavigateCallFeatureCode[] = { 0xF3, 0x0F, 0x10, 0x64, 0x24, 0x60, 0xF3, 0x0F, 0x10, 0x5C, 0x24, 0x58, 0xF3, 0x0F, 0x5C, 0x67,0x50, 0xF3, 0x0F, 0x5C, 0x5F, 0x48, 0xF3, 0x0F, 0x59, 0xDB, 0xF3, 0x0F, 0x59, 0xE4, 0xF3, 0x0F,0x58, 0xDC };//走路Call的特征码
 BYTE jSelectNpcCallFeatureCode[] = { 0x66, 0x89, 0x54, 0x24, 0x26, 0x48, 0x8D, 0x54, 0x24, 0x20, 0x66, 0x44, 0x89, 0x44, 0x24, 0x28,0x41, 0xB8, 0x0C, 0x00, 0x00, 0x00, 0x66, 0x89, 0x44, 0x24, 0x20, 0x66, 0x44, 0x89, 0x4C, 0x24,0x2A, 0x48, 0x8B, 0x49, 0x40 };//选中NpcCall的特征码
+
 BaseAddress::BaseAddress()
 {
-	
+
 	this->operator=(0);
-	
+
 
 }
+BaseAddress::~BaseAddress()
+{
 
+}
 bool BaseAddress::init()
 {
 
@@ -254,263 +258,82 @@ bool BaseAddress::init()
 	}
 	return true;
 
-
-
-
 }
-
-QWORD BaseAddress::获取本人对象()
-{
-return this->j本人对象;
-}
-
-QWORD BaseAddress::获取打坐call()
-{
-return this->j打坐call;
-}
-
-QWORD BaseAddress::取消打坐call()
-{
-return this->j取消打坐call;
-}
-
-QWORD BaseAddress::整理装备call()
-{
-return this->j整理装备call;
-}
-
-QWORD BaseAddress::使用物品call()
-{
-return this->j使用物品call;
-}
-
-QWORD BaseAddress::背包对象的偏移()
-{
-return this->j背包对象的偏移;
-}
-
-QWORD BaseAddress::getRemoteItemDestructionCall()
-{
-return this->jRemoteItemDestructionCall;
-}
-
-QWORD BaseAddress::获取未知对象()
-{
-return this->j未知对象;
-}
-
-QWORD BaseAddress::getWarehouseOffsetValue()
-{
-return this->jWarehouseOffsetValue;
-}
-
-QWORD BaseAddress::getBagOfHoldingCall()
-{
-return this->jBagOfHoldingCall;
-}
-
-QWORD BaseAddress::getPacketizationCall()
-{
-return this->jPacketizationCall;
-}
-
-QWORD BaseAddress::getWarehouseCall()
-{
-return this->jWarehouseCall;
-}
-
-QWORD BaseAddress::getOpenWarehouseCall()
-{
-return this->jOpenWarehouseCall;
-}
-
-QWORD BaseAddress::getCloseWarehouseCall()
-{
-return this->jCloseWarehouseCall;
-}
-
-QWORD BaseAddress::getUnknownGlobalVariable()
-{
-return this->jUnknownGlobalVariable;
-}
-
-QWORD BaseAddress::getOpen仓库老板金玲音的对话界面Call()
-{
-return this->jOpen仓库老板金玲音的对话界面Call;
-}
-
-QWORD BaseAddress::get3520OffsetValue()
-{
-return this->j3520OffsetValue;
-}
-
-QWORD BaseAddress::getBlockOutTheEnvironmentCall()
-{
-return this->jBlockOutTheEnvironmentCall;
-}
-
-QWORD BaseAddress::getUnityOfHeavenAndHumanityCall()
-{
-return this->jUnityOfHeavenAndHumanityCall;
-}
-
-QWORD BaseAddress::get和死亡回城有关的全局变量()
-{
-return this->j和死亡回城有关的全局变量;
-}
-
-QWORD BaseAddress::getResPawnCall()
-{
-return this->jResPawnCall;
-}
-
-QWORD BaseAddress::getChangeServerCall()
-{
-return this->jChangeServerCall;
-}
-
-QWORD BaseAddress::getSkillsArrayOffsetValue()
-{
-return this->jSkillsArrayOffsetValue;
-}
-
-QWORD BaseAddress::getSkillsNumberOffsetValue()
-{
-return this->jSkillsNumberOffsetValue;
-}
-
-QWORD BaseAddress::getSelectCharacterObjectOfIdOffsetValue()
-{
-return this->jSelectCharacterObjectOfIdOffsetValue;
-}
-
-QWORD BaseAddress::getCastSkillCall()
-{
-return this->jCastSkillCall;
-}
-
-QWORD BaseAddress::getActionDisruptionCall()
-{
-return this->jActionDisruptionCall;
-}
-
-QWORD BaseAddress::getPathfindingCall()
-{
-	return this->jPathfindingCall;
-}
-
-QWORD BaseAddress::getPathfindingCall_Rcx()
-{
-	return this->jPathfindingCall_Rcx;
-}
-
-QWORD BaseAddress::getNavigate_1()
-{
-	return this->jNavigateCall_1;
-}
-
-QWORD BaseAddress::getNavigate_2()
-{
-	return this->jNavigateCall_2;
-}
-
-QWORD BaseAddress::getNavigate_3()
-{
-	return this->jNavigateCall_3;
-}
-
-QWORD BaseAddress::getSelectNpcCall()
-{
-	return this->jSelectNpcCall;
-}
-
-BaseAddress& BaseAddress::operator=(IN UINT value)
-{
-this->j本人对象 = value;
-this->j打坐call = value;
-this->j取消打坐call = value;
-this->j使用物品call = value;
-this->j背包对象的偏移 = value;
-this->j整理装备call = value;
-this->jRemoteItemDestructionCall = value;
-this->j未知对象 = value;
-this->j未知对象指针 = value;
-this->jPacketizationCall = value;
-this->jBagOfHoldingCall = value;
-this->jWarehouseOffsetValue = value;
-this->jWarehouseCall = value;
-this->jOpenWarehouseCall = value;
-this->jCloseWarehouseCall = value;
-this->jUnknownGlobalVariable = value;
-this->jOpen仓库老板金玲音的对话界面Call = value;
-this->j3520OffsetValue = value;
-this->jBlockOutTheEnvironmentCall = value;
-this->jUnityOfHeavenAndHumanityCall = value;
-this->j和死亡回城有关的全局变量 = value;
-this->jResPawnCall = value;
-this->jChangeServerCall = value;
-this->jSkillsArrayOffsetValue = value;
-this->jSkillsNumberOffsetValue = value;
-this->jSelectCharacterObjectOfIdOffsetValue = value;
-this->jCastSkillCall = value;
-this->jActionDisruptionCall = value;
-this->jPathfindingCall = value;
-this->jPathfindingCall_Rcx = value;
-this->jNavigateCall_1 = value;
-this->jNavigateCall_2 = value;
-this->jNavigateCall_3 = value;
-this->jSelectNpcCall = value;
-
-return *this;
-}
-
 CString BaseAddress::getBaseAddressData()
 {
-//基址数据
-CString cstr;
-cstr.AppendFormat(L"本人对象: %llX\r\n", this->j本人对象);
-cstr.AppendFormat(L"打坐Call: %llX\r\n", this->j打坐call);
-cstr.AppendFormat(L"取消打坐Call: %llX\r\n", this->j取消打坐call);
-cstr.AppendFormat(L"整理装备Call: %llX\r\n", this->j整理装备call);
-cstr.AppendFormat(L"使用物品Call: %llX\r\n", this->j使用物品call);
-cstr.AppendFormat(L"背包对象的偏移: %llX\r\n", this->j背包对象的偏移);
-cstr.AppendFormat(L"远程销毁物品Call: %llX\r\n", this->jRemoteItemDestructionCall);
-cstr.AppendFormat(L"未知对象: %llX\r\n", this->j未知对象);
-cstr.AppendFormat(L"未知对象指针: %llX\r\n", this->j未知对象指针);
-cstr.AppendFormat(L"组包Call: %llx\r\n", this->jPacketizationCall);
-cstr.AppendFormat(L"仓库对象的偏移: %llx\r\n", this->jWarehouseOffsetValue);
-cstr.AppendFormat(L"仓库Call: %llx\r\n", this->jWarehouseCall);
-cstr.AppendFormat(L"打开仓库Call: %llx\r\n", this->jOpenWarehouseCall);
-cstr.AppendFormat(L"关闭仓库Call: %llx\r\n", this->jCloseWarehouseCall);
-cstr.AppendFormat(L"未知的全局变量: %llx\r\n", this->jUnknownGlobalVariable);
-cstr.AppendFormat(L"打开仓库老板金玲音的对话界面Call: %llx\r\n", this->jOpen仓库老板金玲音的对话界面Call);
-cstr.AppendFormat(L"屏蔽环境Call: %llx\r\n", this->jBlockOutTheEnvironmentCall);
-cstr.AppendFormat(L"天人合一Call: %llx\r\n", this->jUnityOfHeavenAndHumanityCall);
-cstr.AppendFormat(L"和死亡回城有关的全局变量: %llx\r\n", this->j和死亡回城有关的全局变量);
-cstr.AppendFormat(L"和死亡回城Call: %llx\r\n", this->jResPawnCall);
-cstr.AppendFormat(L"换线路Call: %llx\r\n", this->jChangeServerCall);
-cstr.AppendFormat(L"技能数组偏移量: %llx\r\n", this->jSkillsArrayOffsetValue);
-cstr.AppendFormat(L"技能总数偏移值: %llx\r\n", this->jSkillsNumberOffsetValue);
-cstr.AppendFormat(L"选中角色对象id的偏移值: %llx\r\n", this->jSelectCharacterObjectOfIdOffsetValue);
-cstr.AppendFormat(L"释放技能Call: %llx\r\n", this->jCastSkillCall);
-cstr.AppendFormat(L"动作中断Call: %llx\r\n", this->jActionDisruptionCall);
-cstr.AppendFormat(L"寻路Call:    %llx\r\n", this->jPathfindingCall);
-cstr.AppendFormat(L"寻路Call参数1_rcx未知的结构体类型的全局变量: %llx\r\n", this->jPathfindingCall_Rcx);
-cstr.AppendFormat(L"走路Call_1: %llx\r\n", this->jNavigateCall_1);
-cstr.AppendFormat(L"走路Call_2: %llx\r\n", this->jNavigateCall_2);
-cstr.AppendFormat(L"走路Call_3: %llx\r\n", this->jNavigateCall_3);
-cstr.AppendFormat(L"选中NpcCall: %llx\r\n",this->jSelectNpcCall);
-return cstr;
+	//基址数据
+	CString cstr;
+	cstr.AppendFormat(L"本人对象: %llX\r\n", this->j本人对象);
+	cstr.AppendFormat(L"打坐Call: %llX\r\n", this->j打坐call);
+	cstr.AppendFormat(L"取消打坐Call: %llX\r\n", this->j取消打坐call);
+	cstr.AppendFormat(L"整理装备Call: %llX\r\n", this->j整理装备call);
+	cstr.AppendFormat(L"使用物品Call: %llX\r\n", this->j使用物品call);
+	cstr.AppendFormat(L"背包对象的偏移: %llX\r\n", this->j背包对象的偏移);
+	cstr.AppendFormat(L"远程销毁物品Call: %llX\r\n", this->jRemoteItemDestructionCall);
+	cstr.AppendFormat(L"未知对象: %llX\r\n", this->j未知对象);
+	cstr.AppendFormat(L"未知对象指针: %llX\r\n", this->j未知对象指针);
+	cstr.AppendFormat(L"组包Call: %llx\r\n", this->jPacketizationCall);
+	cstr.AppendFormat(L"仓库对象的偏移: %llx\r\n", this->jWarehouseOffsetValue);
+	cstr.AppendFormat(L"仓库Call: %llx\r\n", this->jWarehouseCall);
+	cstr.AppendFormat(L"打开仓库Call: %llx\r\n", this->jOpenWarehouseCall);
+	cstr.AppendFormat(L"关闭仓库Call: %llx\r\n", this->jCloseWarehouseCall);
+	cstr.AppendFormat(L"未知的全局变量: %llx\r\n", this->jUnknownGlobalVariable);
+	cstr.AppendFormat(L"打开仓库老板金玲音的对话界面Call: %llx\r\n", this->jOpen仓库老板金玲音的对话界面Call);
+	cstr.AppendFormat(L"屏蔽环境Call: %llx\r\n", this->jBlockOutTheEnvironmentCall);
+	cstr.AppendFormat(L"天人合一Call: %llx\r\n", this->jUnityOfHeavenAndHumanityCall);
+	cstr.AppendFormat(L"和死亡回城有关的全局变量: %llx\r\n", this->j和死亡回城有关的全局变量);
+	cstr.AppendFormat(L"和死亡回城Call: %llx\r\n", this->jResPawnCall);
+	cstr.AppendFormat(L"换线路Call: %llx\r\n", this->jChangeServerCall);
+	cstr.AppendFormat(L"技能数组偏移量: %llx\r\n", this->jSkillsArrayOffsetValue);
+	cstr.AppendFormat(L"技能总数偏移值: %llx\r\n", this->jSkillsNumberOffsetValue);
+	cstr.AppendFormat(L"选中角色对象id的偏移值: %llx\r\n", this->jSelectCharacterObjectOfIdOffsetValue);
+	cstr.AppendFormat(L"释放技能Call: %llx\r\n", this->jCastSkillCall);
+	cstr.AppendFormat(L"动作中断Call: %llx\r\n", this->jActionDisruptionCall);
+	cstr.AppendFormat(L"寻路Call:    %llx\r\n", this->jPathfindingCall);
+	cstr.AppendFormat(L"寻路Call参数1_rcx未知的结构体类型的全局变量: %llx\r\n", this->jPathfindingCall_Rcx);
+	cstr.AppendFormat(L"走路Call_1: %llx\r\n", this->jNavigateCall_1);
+	cstr.AppendFormat(L"走路Call_2: %llx\r\n", this->jNavigateCall_2);
+	cstr.AppendFormat(L"走路Call_3: %llx\r\n", this->jNavigateCall_3);
+	cstr.AppendFormat(L"选中NpcCall: %llx\r\n", this->jSelectNpcCall);
+	return cstr;
+
 }
-
-
-
-BaseAddress::~BaseAddress()
+BaseAddress& BaseAddress::operator=(IN UINT value)
 {
-	
+	this->j本人对象 = value;
+	this->j打坐call = value;
+	this->j取消打坐call = value;
+	this->j使用物品call = value;
+	this->j背包对象的偏移 = value;
+	this->j整理装备call = value;
+	this->jRemoteItemDestructionCall = value;
+	this->j未知对象 = value;
+	this->j未知对象指针 = value;
+	this->jPacketizationCall = value;
+	this->jBagOfHoldingCall = value;
+	this->jWarehouseOffsetValue = value;
+	this->jWarehouseCall = value;
+	this->jOpenWarehouseCall = value;
+	this->jCloseWarehouseCall = value;
+	this->jUnknownGlobalVariable = value;
+	this->jOpen仓库老板金玲音的对话界面Call = value;
+	this->j3520OffsetValue = value;
+	this->jBlockOutTheEnvironmentCall = value;
+	this->jUnityOfHeavenAndHumanityCall = value;
+	this->j和死亡回城有关的全局变量 = value;
+	this->jResPawnCall = value;
+	this->jChangeServerCall = value;
+	this->jSkillsArrayOffsetValue = value;
+	this->jSkillsNumberOffsetValue = value;
+	this->jSelectCharacterObjectOfIdOffsetValue = value;
+	this->jCastSkillCall = value;
+	this->jActionDisruptionCall = value;
+	this->jPathfindingCall = value;
+	this->jPathfindingCall_Rcx = value;
+	this->jNavigateCall_1 = value;
+	this->jNavigateCall_2 = value;
+	this->jNavigateCall_3 = value;
+	this->jSelectNpcCall = value;
+
+	return *this;
 }
-
-
-
-
-

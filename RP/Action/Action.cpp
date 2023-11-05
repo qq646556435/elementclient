@@ -2,29 +2,6 @@
 #include "Action.h"
 #include "../../Tools/BaseAddress/BaseAddress.h"
 
-typedef  QWORD(FASTCALL* Function_useItemCall)(QWORD, QWORD, QWORD, QWORD);
-typedef  QWORD(FASTCALL* Function_meditationCall)();
-typedef  QWORD(FASTCALL* Function_cancelMeditationCall)();
-typedef  QWORD(FASTCALL* Function_organizeBackpackCall)(QWORD);
-typedef  void (FASTCALL* Function_remoteItemDestructionCall)(QWORD, QWORD);
-typedef  void (FASTCALL* Function_packetizationCall)(QWORD, QWORD, QWORD);
-typedef  void(FASTCALL* function_BagOfHoldingCall)(QWORD); 
-typedef  void(FASTCALL* function_WarehouseCall)(QWORD, QWORD, QWORD, QWORD);
-typedef  void(FASTCALL* function_OpenWarehouseCall)(QWORD,QWORD);
-typedef  QWORD(FASTCALL* Function_CloseWarehouseCall)(QWORD);
-typedef  QWORD(FASTCALL* Function_Open仓库老板金玲音对话界面Call)(QWORD, QWORD);
-typedef  QWORD(FASTCALL* Function_BlockOutTheEnvironmentCall)(QWORD);
-typedef  QWORD(FASTCALL* Function_UnityOfHeavenAndHumanityCall)(QWORD, QWORD, QWORD);
-typedef  QWORD(FASTCALL* Function_RespawnCall)(QWORD, PTCHAR);
-typedef  QWORD(FASTCALL* Function_ChangeServerCall)(QWORD, QWORD);
-typedef  QWORD(FASTCALL* Function_SpellcastingCall)(QWORD, QWORD, QWORD, QWORD, QWORD);
-typedef  QWORD(FASTCALL* Function_ActionDisruptionCall)(QWORD);
-typedef  QWORD(FASTCALL* Function_PathfindingCall)(QWORD, PQWORD, PQWORD, QWORD, byte);
-typedef  QWORD(FASTCALL* Function_NacigateCall_1)(QWORD, DWORD);
-typedef  void (FASTCALL* Function_NacigateCall_2)(QWORD, DWORD, PQWORD);
-typedef  QWORD(FASTCALL* Function_NacigateCall_3)(QWORD, DWORD, QWORD,DWORD,BYTE);
-typedef  QWORD(FASTCALL* Function_SelectNpcCall)(DWORD);
-
 extern   BaseAddress bAObject;
 
 
@@ -32,11 +9,9 @@ Action::Action()
 {
 
 }
-
 Action::~Action()
 {
 }
-
 QWORD Action:: useItem(IN QWORD 下标)
 {
 	
@@ -45,7 +20,6 @@ QWORD Action:: useItem(IN QWORD 下标)
 
 	return rax;
 }
-
 QWORD Action::meditation()
 {
 	Function_meditationCall call = (Function_meditationCall)(bAObject.获取打坐call());
@@ -53,7 +27,6 @@ QWORD Action::meditation()
 
 	return rax;
 }
-
 QWORD Action::cancelMeditation()
 {
 	Function_cancelMeditationCall call = (Function_cancelMeditationCall)(bAObject.取消打坐call());
@@ -61,7 +34,6 @@ QWORD Action::cancelMeditation()
 	
 	return rax;
 }
-
 QWORD Action::organizeBackpack()
 {
 	Function_organizeBackpackCall call = (Function_organizeBackpackCall)(bAObject.整理装备call());
@@ -69,47 +41,38 @@ QWORD Action::organizeBackpack()
 
 	return rax;
 }
-
 void Action::remoteItemDestruction(IN PTCHAR itemName)
 {   
 	
 }
-
 void Action::packetization_RemoteItemDestruction(IN PTCHAR itemName)
 {
 
 }
-
 void Action::bagOfHolding(IN PTCHAR itemName)
 {
 	
 }
-
 void Action::packetization_BagOfHolding(IN PTCHAR itemName)
 {
 	
 }
-
 void Action::backPackToWarehouse(IN PTCHAR itemName)
 {
 	
 }
-
 void Action::packetization_BackPackToWarehouse(IN PTCHAR itemName)
 {
 	
 }
-
 void Action::warehouseToBackPack(IN PTCHAR itemName)
 {
 	
 }
-
 void Action::packetization_WarehouseToBackPack(IN PTCHAR itemName)
 {
 	
 }
-
 void Action::openWarehouseCall()
 {
 	QWORD unknownGlobalVariable = bAObject.getUnknownGlobalVariable();
@@ -118,7 +81,6 @@ void Action::openWarehouseCall()
 
 	Call(unknownGlobalVariable, rdx);
 }
-
 void Action::packetization_OpenWarehouseCall()
 {
 	QWORD rcx = *((QWORD*)(bAObject.获取未知对象() + 0x40));
@@ -128,7 +90,6 @@ void Action::packetization_OpenWarehouseCall()
 	Call(rcx, (QWORD)packetizationBuffer, r8);
 	
 }
-
 QWORD Action::closeWarehouseCall()
 {
 	QWORD rcx = *((QWORD*)(bAObject.获取未知对象() + 0x40));
@@ -137,7 +98,6 @@ QWORD Action::closeWarehouseCall()
 	QWORD rax = Call(rcx);
 	return rax;
 }
-
 void Action::packetization_CloseWarehouseCall()
 {
 	QWORD rcx = *((QWORD*)(bAObject.获取未知对象() + 0x40));
@@ -146,7 +106,6 @@ void Action::packetization_CloseWarehouseCall()
 	Function_packetizationCall Call = (Function_packetizationCall)(bAObject.getPacketizationCall());
 	Call(rcx, (QWORD)packetizationBuffer, r8);
 }
-
 QWORD Action::open仓库老板金玲音对话界面Call()
 {
 	QWORD unknownObjectOne = *((PQWORD)(*((PQWORD)(*((PQWORD)(bAObject.获取本人对象() + bAObject.get3520OffsetValue()))+0x68))+(2*8)));
@@ -157,7 +116,6 @@ QWORD Action::open仓库老板金玲音对话界面Call()
 
 	return rax;
 }
-
 void Action::Close仓库老板金玲音对话界面Call()
 {
 	
@@ -171,7 +129,6 @@ void Action::Close仓库老板金玲音对话界面Call()
 	
 	
 }
-
 QWORD Action::blockOutTheEnvironmentCall()
 {
 	QWORD unknownObject = *((QWORD*)(bAObject.获取未知对象() + 0x38));
@@ -179,21 +136,18 @@ QWORD Action::blockOutTheEnvironmentCall()
 	QWORD rax = call(unknownObject);
 	return rax;
 }
-
 QWORD Action::openUnityOfHeavenAndHumanity()
 {
 	Function_UnityOfHeavenAndHumanityCall call = (Function_UnityOfHeavenAndHumanityCall)(bAObject.getUnityOfHeavenAndHumanityCall());
 	QWORD rax = call(1, 0, 0);
 	return rax;
 }
-
 QWORD Action::closeUnityOfHeavenAndHumanity()
 {
 	Function_UnityOfHeavenAndHumanityCall call = (Function_UnityOfHeavenAndHumanityCall)(bAObject.getUnityOfHeavenAndHumanityCall());
 	QWORD rax = call(0, 0, 0);
 	return rax;
 }
-
 void Action::packetization_OpenUnityOfHeavenAndHumanity()
 {
 	QWORD rcx = *((QWORD*)(bAObject.获取未知对象() + 0x40));
@@ -202,7 +156,6 @@ void Action::packetization_OpenUnityOfHeavenAndHumanity()
 	Function_packetizationCall Call = (Function_packetizationCall)(bAObject.getPacketizationCall());
 	Call(rcx, (QWORD)packetizationBuffer, r8);
 }
-
 void Action::packetization_CloseUnityOfHeavenAndHumanity()
 {
 	QWORD rcx = *((QWORD*)(bAObject.获取未知对象() + 0x40));
@@ -211,7 +164,6 @@ void Action::packetization_CloseUnityOfHeavenAndHumanity()
 	Function_packetizationCall Call = (Function_packetizationCall)(bAObject.getPacketizationCall());
 	Call(rcx, (QWORD)packetizationBuffer, r8);
 }
-
 QWORD Action::resPawn()
 {
 	QWORD mRcx = *((QWORD*)(*((QWORD*)(bAObject.get和死亡回城有关的全局变量() + 0x8)) + 0x10));
@@ -224,7 +176,6 @@ QWORD Action::resPawn()
 	return mRax;
 		
 }
-
 QWORD Action::changeServer(IN UINT server)
 {
 	
@@ -235,19 +186,16 @@ QWORD Action::changeServer(IN UINT server)
 
 	return rax;
 }
-
 DWORD Action::getSelectCharacterObjectOfId()
 {
 	DWORD id = *((PDWORD)(bAObject.获取本人对象() + bAObject.getSelectCharacterObjectOfIdOffsetValue()));
 	return id;
 }
-
 QWORD Action::selfCasting(IN QWORD skillId)
 {
 
 	return true;
 }
-
 QWORD Action::casting(IN QWORD skillId, IN PQWORD pInGameCharacterObject)
 {
 	QWORD mSkillId = skillId;
@@ -259,7 +207,6 @@ QWORD Action::casting(IN QWORD skillId, IN PQWORD pInGameCharacterObject)
 	QWORD rax = call(mSkillId, rdx, r8, r9, rsp_0x20);
 	return rax;
 }
-
 QWORD Action::actionDisruption()
 {  
    QWORD playerCharacterObject = bAObject.获取本人对象(); //本人玩家对象
@@ -270,7 +217,6 @@ QWORD Action::actionDisruption()
    //返回值返回
    return rax;
 }
-
 void Action::packetization_ActionDisruption()
 {
 	QWORD unknownObject = *((QWORD*)(bAObject.获取未知对象() + 0x40));//未知对象
@@ -280,7 +226,6 @@ void Action::packetization_ActionDisruption()
 	//调用组包Call
 	Call(unknownObject, (QWORD)packetizationBuffer, r8);
 }
-
 QWORD Action::pathfinding(IN DataStruct::data_Coordinates* targetCoordinates)
 {
 	/*
@@ -309,7 +254,6 @@ QWORD Action::pathfinding(IN DataStruct::data_Coordinates* targetCoordinates)
 	return rax;
 
 }
-
 QWORD Action::navigate(IN DataStruct::data_Coordinates* targetCoordinates)
 {
 	/*
@@ -352,7 +296,6 @@ QWORD Action::navigate(IN DataStruct::data_Coordinates* targetCoordinates)
 
 	return rax;
 }
-
 QWORD Action::selectNpcCall(IN DWORD npcObjectId)
 {
 	DWORD rcx = npcObjectId;//npc对象的id
@@ -362,4 +305,3 @@ QWORD Action::selectNpcCall(IN DWORD npcObjectId)
 	//返回值
 	return rax;
 }
-

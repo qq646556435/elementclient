@@ -1,29 +1,24 @@
 #include "RP.h"
 #include "../Tools/BaseAddress/BaseAddress.h"
-typedef  QWORD(FASTCALL* Function_SpellcastingCall)(QWORD, QWORD, QWORD, QWORD, QWORD);
-typedef  void (FASTCALL* Function_remoteItemDestructionCall)(QWORD, QWORD);
-typedef  void (FASTCALL* Function_packetizationCall)(QWORD, QWORD, QWORD);
-typedef  void(FASTCALL* function_BagOfHoldingCall)(QWORD);
-typedef  void(FASTCALL* function_WarehouseCall)(QWORD, QWORD, QWORD, QWORD);
+
+ 
 extern BaseAddress bAObject;
 RP::RP()
 {
 
 }
-
 void RP::init()
 {
 	this->OC::init();
 	this->BackPack::init();
 	this->Warehouse::init();
 }
-
 QWORD RP::selfCasting(IN QWORD skillId)
 {
 	QWORD mSkillid = skillId;
 	QWORD rdx = 0x80;
 	QWORD r8 = 0x01;
-	//本人玩家的角色对象id
+	//本人玩家的角色对象id 
 	PDWORD pMyCharacterObjectId = (PDWORD) & this->角色信息.id;
 	QWORD r9 = (QWORD)pMyCharacterObjectId;
 	QWORD rsp_20 = 0x0;
@@ -32,15 +27,12 @@ QWORD RP::selfCasting(IN QWORD skillId)
 
 	return rax;
 }
-
-
 void RP::remoteItemDestruction(IN PTCHAR itemName)
 {
     DataStruct::data_Item item = BackPack::getItemData(itemName);
     Function_remoteItemDestructionCall call = (Function_remoteItemDestructionCall)bAObject.getRemoteItemDestructionCall();
 	call(item.index,item.id);
 }
-
 void RP::packetization_RemoteItemDestruction(IN PTCHAR itemName)
 {
 	DataStruct::data_Item item = BackPack::getItemData(itemName);
@@ -53,14 +45,12 @@ void RP::packetization_RemoteItemDestruction(IN PTCHAR itemName)
 	QWORD rcx = *((QWORD*)(bAObject.获取未知对象() + 0x40));
 	Call(rcx, (QWORD)packetizationBuffer, 0x0A);
 }
-
 void RP::bagOfHolding(IN PTCHAR itemName)
 {
 	DataStruct::data_Item item = BackPack::getItemData(itemName);
 	function_BagOfHoldingCall Call = (function_BagOfHoldingCall)bAObject.getBagOfHoldingCall();
 	Call(item.index);
 }
-
 void RP::packetization_BagOfHolding(IN PTCHAR itemName)
 {
 	DataStruct::data_Item item = BackPack::getItemData(itemName);
@@ -72,7 +62,6 @@ void RP::packetization_BagOfHolding(IN PTCHAR itemName)
 	QWORD rcx = *((QWORD*)(bAObject.获取未知对象() + 0x40));
 	Call(rcx, (QWORD)packetizationBuffer, 0x06);
 }
-
 void RP::backPackToWarehouse(IN PTCHAR itemName)
 {
 	DataStruct::data_Item item = BackPack::getItemData(itemName);
@@ -83,7 +72,6 @@ void RP::backPackToWarehouse(IN PTCHAR itemName)
 
 	Call(unknownObject, rdx, targetWarehouseIndex, item.index);
 }
-
 void RP::packetization_BackPackToWarehouse(IN PTCHAR itemName)
 {
 	DataStruct::data_Item item = BackPack::getItemData(itemName);
@@ -96,7 +84,6 @@ void RP::packetization_BackPackToWarehouse(IN PTCHAR itemName)
 	*((DWORD*)(&packetizationBuffer[6])) = item.index;
 	Call(rcx, (QWORD)packetizationBuffer, 0x0A);
 }
-
 void RP::warehouseToBackPack(IN PTCHAR itemName)
 {
 	DataStruct::data_Item WarehouseItem = this->Warehouse::getItemData(itemName);
@@ -107,7 +94,6 @@ void RP::warehouseToBackPack(IN PTCHAR itemName)
 	QWORD rdx = 0x0;
    Call(unknownObject, rdx, WarehouseItem.index, backPackItemEmptyIndex);
 }
-
 void RP::packetization_WarehouseToBackPack(IN PTCHAR itemName)
 {
 	DataStruct::data_Item WarehouseItem = this->Warehouse::getItemData(itemName);
@@ -121,4 +107,3 @@ void RP::packetization_WarehouseToBackPack(IN PTCHAR itemName)
 	*((DWORD*)(&packetizationBuffer[6])) = backPackItemEmptyIndex;
 	Call(rcx, (QWORD)packetizationBuffer, 0x0A);
 }
-

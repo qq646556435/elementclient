@@ -1,24 +1,20 @@
 #include "FMC.h"
 #include <tlhelp32.h>
+
 FMC::FMC()
 {
 	this->operator=(0);
 }
-
 FMC::FMC(IN QWORD pid, IN std::wstring 模块名称)
 {
 	this->operator=(0);
 	获取模块内存区域(pid, 模块名称);
 	this->进程句柄 = OpenProcess(PROCESS_ALL_ACCESS, false, pid);
 }
-
 FMC::~FMC()
 {
 	CloseHandle(进程句柄);
 }
-
-
-
 QWORD FMC::获取模块内存区域(IN QWORD pid, IN std::wstring 模块名称)
 {
 
